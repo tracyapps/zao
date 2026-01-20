@@ -1,0 +1,424 @@
+/*
+* header styles
+*
+*	1. core site header styles
+*	2. header masks
+*	3. zaobank logo
+*	4. light/dark toggle switch
+*	5. main nav toggle button
+*
+*/
+
+// =============================================	1. core site header styles
+
+
+.site_main_header {
+	position: sticky;
+	top: 0vh;
+	width: 100%;
+	height: 100%;
+	min-height: 96px;
+	z-index: 9999;
+
+	transition: all 250ms ease-in-out;
+
+
+
+	&.smaller {
+		@include themify($themes) {
+	//		background: rgba(themed('backgroundColor'), 0.78);
+			color: themed('textColor');
+
+		}
+
+
+
+		.menu_is_open & {
+			background: transparent;
+			box-shadow: none;
+			color: $white;
+		}
+	}
+
+	.menu_is_open & {
+		color: $white;
+	}
+
+	.flex-row {
+		justify-content: space-between;
+		align-items: stretch;
+
+	}
+
+	.header_center {
+		flex: 1;
+		display: flex;
+		align-items: flex-end;
+		padding-right: 2em;
+	}
+
+
+	.utility_right_side {
+		display: flex;
+
+	}
+	.logo-spacer {
+		min-width: 200px;
+
+		@include tablet-down {
+			min-width: 90px;
+		}
+	}
+}
+
+// =============================================	2. header vector styles
+
+#header-vector-background {
+	position: relative;
+
+	--gradient-1-color-1: #{$sky-blue};
+	--gradient-1-color-2: #{$purple-pink};
+	--gradient-1-color-3: #{$light-yellow};
+
+	--gradient-2-color-1: #{$white};
+	--gradient-2-color-2: #{$light-mint-reen};
+	--gradient-2-color-3: #{$white};
+	--gradient-2-color-4: #{$mint-green};
+
+	--gradient-3-color-1: #{$sky-blue};
+	--gradient-3-color-2: #{$lavender};
+	--gradient-3-color-3: #{$pink};
+	--gradient-3-color-4: #{$light-orange};
+	--gradient-3-color-5: #{$light-yellow};
+	--gradient-3-color-6: #{$white};
+
+	--vector-shadow: #{$light};
+
+
+	.theme-dark & {
+		--gradient-1-color-1: #{$teal-blue};
+		--gradient-1-color-2: #{$pink-red};
+		--gradient-1-color-3: #{$yellow-orange};
+
+		--gradient-2-color-1: #{$bright-blue};
+		--gradient-2-color-2: #{$purple-blue};
+		--gradient-2-color-3: #{$blue};
+		--gradient-2-color-4: #{$green};
+
+		--gradient-3-color-1: #{$bright-blue};
+		--gradient-3-color-2: #{$purple-blue};
+		--gradient-3-color-3: #{$hot-pink};
+		--gradient-3-color-4: #{$orange-red};
+		--gradient-3-color-5: #{$yellow};
+		--gradient-3-color-6: #{$green};
+
+		--vector-shadow: #{$darker};
+	}
+}
+
+svg#heading-vector {
+	width: 100%;
+	height: 7em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+
+// =============================================	3. zaobank logo
+#zaobank_main_logo {
+
+	position: absolute;
+	padding:  0;
+	transition: all 200ms ease-in-out;
+	top: 11px;
+	min-width: 240px;
+	z-index: 9999;
+
+
+	svg {
+		max-width: 100%;
+		height: auto;
+
+		#zaobank-logo-shadow {
+			@include themify($themes) {
+				fill: themed( 'subtleBackgroundColor' );
+			}
+		}
+
+		#zaobank-background {
+			@include themify($themes) {
+				fill: themed( 'backgroundColor' );
+			}
+		}
+
+		#zaobank-foreground {
+			transition: fill 200ms ease-in-out;
+
+			@include themify($themes) {
+				fill: themed( 'textColor' );
+			}
+		}
+
+		&:hover,
+		&:target,
+		&:focus {
+			#zaobank-foreground {
+				@include themify($themes) {
+					fill: themed( 'linkColor' );
+				}
+			}
+		}
+	}
+
+
+
+
+	a,
+	a:visited {
+		display: flex;
+
+		@include themify($themes) {
+			color: themed( 'mainNavLinkColor' );
+		}
+	}
+
+	@include tablet-down {
+		min-width: 140px;
+	}
+	@include phone-only {
+		min-width: 24vw;
+
+
+		a,
+		a:visited {
+			display: block;
+		}
+	}
+
+
+	.smaller & {
+		transform: scale(0.88) translate(-4px, -5px);
+
+		@include tablet-down {
+			transform: scale(0.68) translate(-1rem, -1rem);
+		}
+	}
+}
+
+
+
+// =============================================	4. light/dark toggle switch
+
+
+.darkmode_switch {
+	--hue: 256;
+	--bg: hsl(var(--hue),10%,90%);
+	--fg: hsl(var(--hue),10%,10%);
+	--primary: hsl(var(--hue),90%,50%);
+	--trans-dur: 0.3s;
+	--trans-timing: cubic-bezier(0.76,0.05,0.24,0.95);
+	--trans-timing-in: cubic-bezier(0.76,0.05,0.86,0.06);
+	--trans-timing-out: cubic-bezier(0.05,0.76,0.06,0.86);
+	//font-size: calc(40px + (80 - 40) * (100vw - 320px) / (2560 - 320));
+
+	margin: 0;
+	position: relative;
+	line-height: 1.5;
+
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+	border-radius: 1em;
+
+	@include phone-landscape {
+		margin-right: 30px;
+	}
+
+	input {
+		color: var(--fg);
+		font: 1em/1.5 sans-serif;
+	}
+	.switch__icon,
+	.switch__input {
+		display: block;
+	}
+	.switch__icon {
+		position: absolute;
+		top: 0.575em;
+		right: 0.5em;
+		width: 0.75em;
+		height: 0.75em;
+		transition:
+				opacity calc(var(--trans-dur) / 2),
+				transform calc(var(--trans-dur) / 2);
+	}
+	.switch__icon polyline {
+		transition: stroke-dashoffset calc(var(--trans-dur) / 2);
+	}
+	.switch__icon--light,
+	.switch__icon--light polyline {
+		transition-delay: calc(var(--trans-dur) / 2);
+		transition-timing-function: var(--trans-timing-out);
+	}
+	.switch__icon--dark {
+		opacity: 0;
+		transform: translateX(-0.75em) rotate(30deg) scale(0.75);
+		transition-timing-function: var(--trans-timing-in);
+	}
+	.switch__input {
+		background-color: hsl(210,90%,70%);
+		border-radius: 0.75em;
+		box-shadow:
+				0 0 0 0.125em hsla(var(--hue),90%,50%,0),
+				0.125em 0.125em 0.25em hsla(var(--hue),90%,10%,0.2);
+		outline: transparent;
+		position: relative;
+		width: 3em;
+		height: 1.5em;
+		-webkit-appearance: none;
+		appearance: none;
+		-webkit-tap-highlight-color: transparent;
+		transition:
+				background-color var(--trans-dur) var(--trans-timing),
+				box-shadow 0.15s linear;
+	}
+	.switch__input:focus-visible {
+		box-shadow:
+				0 0 0 0.125em hsl(var(--hue),90%,50%),
+				0.125em 0.125em 0.25em hsla(var(--hue),90%,10%,0.2);
+	}
+	.switch__input:before,
+	.switch__input:after {
+		content: "";
+		display: block;
+		position: absolute;
+	}
+	.switch__input:before {
+		background-color: hsl(50,90%,50%);
+		border-radius: inherit;
+		mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
+		-webkit-mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
+		inset: 0;
+		transition: background-color var(--trans-dur) var(--trans-timing);
+	}
+	.switch__input:after {
+		background-color: hsl(0,0%,100%);
+		border-radius: 50%;
+		box-shadow: 0.05em 0.05em 0.05em hsla(var(--hue),90%,10%,0.1);
+		top: 0.125em;
+		left: 0.125em;
+		width: 1.25em;
+		height: 1.25em;
+		transition:
+				background-color var(--trans-dur) var(--trans-timing),
+				transform var(--trans-dur) var(--trans-timing);
+		z-index: 1;
+	}
+	.switch__input:checked {
+		background-color: hsl(290,90%,40%);
+	}
+	.switch__input:checked:before {
+		background-color: hsl(220,90%,40%);
+	}
+	.switch__input:checked:after {
+		background-color: hsl(0,0%,0%);
+		transform: translateX(1.5em);
+	}
+	.switch__input:checked ~ .switch__icon--light,
+	.switch__input:checked ~ .switch__icon--light polyline {
+		transition-delay: 0s;
+		transition-timing-function: var(--trans-timing-in);
+	}
+	.switch__input:checked ~ .switch__icon--light {
+		opacity: 0;
+		transform: translateX(-0.75em) rotate(-30deg) scale(0.75);
+	}
+	.switch__input:checked ~ .switch__icon--light polyline {
+		stroke-dashoffset: 1.5;
+	}
+	.switch__input:checked ~ .switch__icon--dark {
+		opacity: 1;
+		transform: translateX(-1.5em);
+		transition-delay: calc(var(--trans-dur) / 2);
+		transition-timing-function: var(--trans-timing-out);
+	}
+	.switch__sr {
+		overflow: hidden;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+	}
+
+
+}
+
+
+// =============================================	5. main nav toggle button
+
+// grouping search icon and menu button
+#mobile_menu_toggle_container {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+#menu_toggle_button {
+	width: 45px;
+	height: 45px;
+	padding: 5px;
+	margin: 1.1em 0.5em;
+	border: 2px solid transparent;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 200ms ease-in-out;
+	z-index: 999999;
+	background: transparent;
+	position: absolute;
+	top: 18px;
+	right: 15px;
+	color: $white;
+
+	@include tablet-down {
+		display: block;
+	}
+	@include phone-landscape {
+		top: 0;
+		margin: 0;
+	}
+
+
+
+
+	.menu_is_open & {
+		color: $white;
+	}
+
+
+	@include phone-only {
+		padding: 10px;
+		border: 2px solid currentColor;
+	}
+
+	&:hover,
+	&:target {
+		border: 2px solid currentColor;
+	}
+
+	.menu_line {
+		transition: all 200ms ease-in-out;
+		stroke-width: 3;
+		stroke: $white;
+
+		.main_nav_open & {
+			stroke: $white;
+		}
+	}
+
+	&.main_nav_open {
+
+		.middle_line {
+			opacity: 0;
+
+		}
+	}
+}

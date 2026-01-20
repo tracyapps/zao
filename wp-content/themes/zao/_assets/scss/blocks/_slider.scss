@@ -1,0 +1,113 @@
+section.slider_block {
+
+	.slide_inner_content_container {
+		margin-right: calc( 3% + 2.5em );
+		margin-left: calc( 3% + 2.5em );
+		display: flex;
+		height: 100%;
+
+		&.full_width {
+			max-width: calc( 93% - 5em);
+			width: auto;
+		}
+
+		&.align_center {
+			max-width: 60%;
+			margin-right: auto;
+			margin-left: auto;
+			text-align: center;
+
+		}
+
+		&.align_right {
+			text-align: right;
+			max-width: 60%;
+			margin-left: auto;
+		}
+		&.align_left {
+			max-width: 60%;
+			margin-right: auto;
+		}
+
+		&.align_middle {
+			.slide_inner_content {
+				flex: 1;
+				align-self: center;
+			}
+		}
+
+		&.align_bottom {
+			.slide_inner_content {
+				flex: 1;
+				align-self: flex-end;
+			}
+		}
+
+		&.align_top {
+			.slide_inner_content {
+				flex: 1;
+				align-self: flex-start;
+			}
+		}
+
+	}
+}
+
+/*
+*   for when the slider is the first block, w/ no header image
+*	this moves the slider "up" under the header, and adds additional
+*	padding on the slide content as to not be covered up by the header
+*/
+
+div.no_header + main.singular_page > section.slider_block {
+	margin-top: calc(0.047 * -100cqw);
+
+	.splide__slide__container {
+		padding-top: calc(0.05 * 100cqw );
+	}
+}
+
+.slider_block {
+	ul,
+	li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li.splide__slide {
+		margin: 0;
+		width: 100%;
+		//aspect-ratio: 5.5/3.2;
+		position: relative;
+
+
+		div.splide__slide__container {
+			width: 100%;
+
+			video {
+				height: 100%;
+				width: 100%;
+				z-index: -1;
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				object-fit: cover;
+			}
+
+			img.slide_background_image {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+

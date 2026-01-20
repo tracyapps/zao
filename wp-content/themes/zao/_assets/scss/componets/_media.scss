@@ -1,0 +1,50 @@
+img {
+	max-width: 100%;
+	height: auto;
+
+	&.framed {
+		padding: 13px;
+		@include themify($themes) {
+			border: 1px solid rgba( themed('textColor'), 0.5 );
+			background: themed('backgroundColor');
+			box-shadow: themed( 'subtleShadow');
+		}
+
+		a &,
+		a:visited & {
+			transition: all 200ms ease-in-out;
+
+			&:hover,
+			&:target,
+			&:focus,
+			&:active {
+				transform: scale(1.05);
+				@include themify($themes) {
+				//	border: 1px solid rgba( themed('textColor'), 0.5 );
+					border: 3px solid themed('linkColor');
+					box-shadow: themed( 'largeShadow');
+					padding: 11px;
+				}
+			}
+		}
+	}
+
+}
+video,
+iframe {
+	max-width: 100% !important;
+	max-height: 90vh;
+
+	&.framed {
+
+		margin: 1em auto;
+		padding: 6px;
+
+		@include themify($themes) {
+			border: 1px solid rgba( themed('textColor'), 0.5 );
+			background: themed('backgroundColor');
+			box-shadow: themed( 'subtleShadow');
+		}
+	}
+
+}

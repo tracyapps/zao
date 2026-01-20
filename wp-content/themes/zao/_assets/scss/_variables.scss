@@ -1,0 +1,283 @@
+/*
+ *
+ *	Variabiles
+ *
+ */
+
+
+// Define colors
+$red: #bd0200;
+$red-dark: #980200;
+$red-light: #FFCBCB;
+
+
+$pink-red: #ca255b;
+$hot-pink: #e91388;
+$pink: #ff4faf;
+$purple-pink: #e657ff;
+
+$orange-red: #eb2d2e;
+$light-orange: #ff9966;
+$yellow-orange: #ffa41f;
+
+$yellow: #ffe600;
+$light-yellow: #fde92b;
+
+$light-mint-reen: #ddffd9;
+$mint-green: #d3ffa6;
+$green: #009e54;
+
+$teal-blue: #00639a;
+
+$sky-blue: #91e9ff;
+$light-blue: #24caff;
+$bright-blue: #00a8de;
+
+$blue: #2b51fd;
+$purple-blue: #333391;
+$lavender: #a375ff;
+
+$gold: #A3824D;
+$gold-light: #BDA881;
+
+$white: #ffffff;
+$light: #d5d0dd;
+$dark: #312e35;
+$darker: #2a2630;
+$black: #000000;
+
+$grey-light: #C3C3C3;
+$grey-medium: #262626;
+
+$teal: rgb(81,184,218);
+$purplel: rgb(54, 49, 103);
+
+
+// Define measurements
+$body_text_width: 90vw;
+$max_body_text_width: 910px;
+$max_wide_page_width: 1500px;
+$basefont_size: 15px;
+
+
+// Define fonts
+$font-header: "Special Gothic Expanded One", sans-serif;
+$font-body: "Public Sans", sans-serif;
+
+
+// Define font size options
+$font-size-xs: clamp(1.02rem, 0.07vi + 1rem, 1.13rem);
+$font-size-sm: clamp(1.28rem, 0.15vi + 1.22rem, 1.5rem);
+$font-size-base: clamp(1.6rem, 0.27vi + 1.49rem, 2rem);
+$font-size-md: clamp(2rem, 0.44vi + 1.82rem, 2.67rem);
+$font-size-lg: clamp(2.5rem, 0.7vi + 2.22rem, 3.55rem);
+$font-size-xl: clamp(3.13rem, 1.07vi + 2.7rem, 4.74rem);
+$font-size-xxl: clamp(3.91rem, 1.61vi + 3.26rem, 6.31rem);
+$font-size-huge: clamp(4.88rem, 2.36vi + 3.94rem, 8.42rem);
+
+$font-size-blog-title: clamp(3.39rem, 3.68vw + 1.55rem, 8.54rem);
+
+// Shadow options
+
+$subtle_shadow_light: rgba(255, 255, 255, 0.91) 1px 1px 1px 0px inset,
+rgba(0, 0, 0, 0.25) 0px 30px 50px -20px,
+rgba(0, 0, 0, 0.43) 0px 10px 40px -20px;
+$subtle_shadow_dark: rgba(100, 100, 100, 0.21) -1px -1px 1px 0px inset,
+rgba(0, 0, 0, 0.42) 0px 30px 50px -10px,
+rgba(0, 0, 0, 0.63) 0px 10px 40px -20px;
+$heavy_shadow: rgba(0, 0, 0, 0.35) 0px 2px 30px -50px,
+rgba(0, 0, 0, 0.39) 0px 4px 2px -7px,
+rgba(0, 0, 0, 0.39) 0px 8px 4px -3px,
+rgba(0, 0, 0, 0.19) 0px 16px 8px -6px,
+rgba(0, 0, 0, 0.19) 0px 32px 16px -3px;
+
+
+$subtle_inset_light: rgba(0, 0, 0, 0.29) 2px 2px 6px 0px inset,
+rgba(0, 0, 0, 0.94) 5px 1px 5px 10px inset,
+rgba(0, 0, 0, 0.5) 0 -1px 1px;
+$subtle_inset_dark: rgba(0, 0, 0, 0.19) 2px 2px 8px 0px inset,
+rgba(0, 0, 0, 0.25) -1px -1px 6px 1px inset,
+rgba(0, 0, 0, 0.75) 0 -1px 3px;
+
+$active_shadow_light: rgba(0, 0, 0, 0.15) 0 0 15px,
+rgba(0, 0, 0, 0.08) 0 -2px 6px,
+rgba(0, 0, 0, 0.18) 0px 3px 8px,
+rgba(0, 0, 0, 0.17) 0px 7px 15px,
+rgba(0, 0, 0, 0.59) 0 1px 1px;
+$active_shadow_dark: rgba(0, 0, 0, 0.25) 0 0 15px,
+rgba(0, 0, 0, 0.18) 0 -2px 6px,
+rgba(0, 0, 0, 0.28) 0px 3px 8px,
+rgba(0, 0, 0, 0.19) 0px 7px 15px,
+rgba(0, 0, 0, 0.62) 0 1px 1px;
+
+
+$text_shadow_dark: 0 1px 0 rgba( 0, 0, 0, 0.85 ),
+			1px 1px 0 rgba( 0, 0, 0, 0.5 ),
+			0 0 20px rgba( 0, 0, 0, 0.12 );
+
+$text_shadow_light: 0 1px 0 rgba( 255, 255, 255, 0.65 ),
+			1px 0 0 rgba( 255, 255, 255, 0.25 ),
+			0 0 20px rgba( 255, 255, 2550, 0.42 );
+
+
+// Define animation speeds
+$transition_speed: 250ms;
+
+$video_aspect_ratio:  315 / 560 315 / 560;
+// Define breakpoints
+$breakpoint-small: 600px;
+$breakpoint-medium: 900px;
+$breakpoint-large: 1200px;
+$breakpoint-x-large: 1800px;
+
+// golden ratio
+$golden-large:	63.8%;
+
+
+// CSS vars
+:root {
+	--mask-head-size: calc(0.015 * 100cqw);
+	--mask-foot-size: calc(0.020 * 80cqw);
+	--mask-foot-size-small: 0;
+
+}
+
+/*
+ * Theme definitions
+ *
+ * usage:
+ *		[[SELECTOR]] {
+ *			@include themify($themes) {
+ *				[[PROPERTY]]]: themed('nameFromThemeDecloration');
+ *			}
+ *		}
+ */
+
+$themes: (
+		light: (
+			// body & core styles
+				backgroundColor: $white,
+				textColor: $dark,
+				linkColor: $teal-blue,
+				linkHoverColor: $dark,
+				subtleBackgroundColor: $light,
+
+			// primary button
+				primaryButtonBGColor: $yellow,
+				primaryButtonTextColor: $black,
+				primaryButtonBGHoverColor: $red-dark,
+				primaryButtonTextHoverColor: $white,
+				primaryButtonBorder: 2px solid transparent,
+				primaryButtonHoverBorder: 2px solid $grey-light,
+
+			// secondary button
+				secondaryButtonBGColor: transparent,
+				secondaryButtonTextColor: $dark,
+				secondaryButtonBGHoverColor: $dark,
+				secondaryButtonTextHoverColor: $white,
+				secondaryButtonBorder: 2px solid $dark,
+				secondaryButtonHoverBorder: 2px solid $white,
+
+			// forms
+				inputBGColor: $light,
+				inputBorderColor: $grey-medium,
+				inputTextColor: $dark,
+				inputPlaceholderColor: $grey-medium,
+				labelTextColor: $dark,
+
+			// main navigation
+				mainNavBGColor: transparent,
+				mainNavLinkColor: $white,
+				mainNavItemBGColor: transparent,
+				mainNavLinkHoverColor: $white,
+				mainNavItemBGHoverColor: rgba( $dark, 0.9 ),
+
+			// utility navigation
+				utilityNavBGColor: $dark,
+				utilityNavBGHoverColor: $black,
+				utilityNavLinkColor: $white,
+				utilityNavLinkHoverColor: $yellow,
+
+			// box shadow options
+				subtleShadow: $subtle_shadow_light,
+				normalShadow: 1px 1px 4px rgba(0, 0, 0, 0.15),
+				largeShadow: $heavy_shadow,
+				activeShadow: $active_shadow_light,
+				insetShadow: $subtle_inset_light,
+
+			// text shadow options
+				textShadow: $text_shadow_light,
+				textBackgroundBlurShadow: $white,
+				textShadowBelow: $black,
+				textHighlightAbove: $white,
+
+			// footer
+				footerBGColor: $light,
+				footerTextColor: $dark,
+				footerLinkColor: $red,
+				footerLinkHoverColor: $dark,
+		),
+		dark: (
+			// body & core styles
+				backgroundColor: $dark,
+				textColor: $white,
+				linkColor: $yellow,
+				linkHoverColor: $white,
+				subtleBackgroundColor: $darker,
+
+			// primary button
+				primaryButtonBGColor: $yellow,
+				primaryButtonTextColor: $black,
+				primaryButtonBGHoverColor: $red-dark,
+				primaryButtonTextHoverColor: $white,
+				primaryButtonBorder: 2px solid transparent,
+				primaryButtonHoverBorder: 2px solid $grey-light,
+
+			// secondary button
+				secondaryButtonBGColor: transparent,
+				secondaryButtonTextColor: $white,
+				secondaryButtonBGHoverColor: $white,
+				secondaryButtonTextHoverColor: $dark,
+				secondaryButtonBorder: 2px solid $white,
+				secondaryButtonHoverBorder: 2px solid $dark,
+
+			// forms
+				inputBGColor: $black,
+				inputBorderColor: $grey-light,
+				inputTextColor: $white,
+				inputPlaceholderColor: $grey-light,
+				labelTextColor: $white,
+
+			// main navigation
+				mainNavBGColor: transparent,
+				mainNavLinkColor: $white,
+				mainNavItemBGColor: transparent,
+				mainNavLinkHoverColor: $white,
+				mainNavItemBGHoverColor: rgba( $dark, 0.9 ),
+
+			// utility navigation
+				utilityNavBGColor: $dark,
+				utilityNavBGHoverColor: $black,
+				utilityNavLinkColor: $white,
+				utilityNavLinkHoverColor: $yellow,
+
+			// box shadow options
+				subtleShadow: $subtle_shadow_dark,
+				normalShadow: 1px 1px 4px rgba(0, 0, 0, 0.55),
+				largeShadow: $heavy_shadow,
+				activeShadow: $active_shadow_light,
+				insetShadow: $subtle_inset_light,
+
+			// text shadow options
+				textShadow: $text_shadow_dark,
+				textBackgroundBlurShadow: $dark,
+				textShadowBelow: $light,
+				textHighlightAbove: $grey-medium,
+
+			// footer
+				footerBGColor: $grey-medium,
+				footerTextColor: $white,
+				footerLinkColor: $white,
+				footerLinkHoverColor: $yellow,
+		),
+);
