@@ -5,6 +5,11 @@
 function zaobank_scripts() {
 	wp_enqueue_style('zaobank-styles', get_template_directory_uri() . '/_assets/css/styles.css', array(), ZAOBANK_VERSION );
 
+	// Load app-specific styles on app pages
+	if (function_exists('zaobank_is_app_section') && zaobank_is_app_section()) {
+		wp_enqueue_style('zaobank-app-styles', get_template_directory_uri() . '/app/app-styles.css', array('zaobank-styles'), ZAOBANK_VERSION);
+	}
+
 	wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), null, true );
 	wp_enqueue_script('jquery-ui', '//code.jquery.com/ui/1.13.3/jquery-ui.min.js', array(), null, true );
 	wp_enqueue_script('zaobank-scripts', get_template_directory_uri() . '/_assets/js/scripts.js', array( 'jquery' ), ZAOBANK_VERSION, true );

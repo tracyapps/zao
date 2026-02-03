@@ -139,7 +139,7 @@ function zaobank_add_dark_mode_checker() { ?>
 /**
  * Sidebars/widgets.
  */
-require get_template_directory() . '/_assets/functions/sidebars.php';
+//require get_template_directory() . '/_assets/functions/sidebars.php';
 /**
  * Enqueue (scripts/styles)
  */
@@ -205,3 +205,47 @@ require get_template_directory() . '/_assets/functions/block-mods.php';
 if (WP_DEBUG) {
 	require get_template_directory() . '/_assets/functions/tad-debug-tools.php';
 }
+
+/**
+ * =============================================================================
+ * ZAO BANK APP INTEGRATION
+ * =============================================================================
+ */
+
+/**
+ * Configure ZAOBank page slugs for /app/ structure.
+ *
+ * All timebank pages are children of the /app/ parent page.
+ * This enables AAM to protect the entire section with a wildcard.
+ */
+add_filter('zaobank_page_slugs', function ($slugs) {
+	return array(
+		'dashboard'     => 'app/dashboard',
+		'jobs'          => 'app/jobs',
+		'job_form'      => 'app/new-job',
+		'my_jobs'       => 'app/my-jobs',
+		'profile'       => 'app/profile',
+		'profile_edit'  => 'app/profile-edit',
+		'messages'      => 'app/messages',
+		'exchanges'     => 'app/exchanges',
+		'appreciations' => 'app/appreciations',
+	);
+});
+
+/**
+ * Add body classes for app section.
+ */
+add_filter('body_class', function ($classes) {
+	if (function_exists('zaobank_is_app_section') && zaobank_is_app_section()) {
+		$classes[] = 'zaobank-app-page';
+
+		// Add specific template class
+		if (function_exists('zaobank_current_template')) {
+			$template = zaobank_current_template();
+			if ($template) {
+				$classes[] = 'zaobank-template-' . $template;
+			}
+		}
+	}
+	return $classes;
+});

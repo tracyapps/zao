@@ -3,6 +3,18 @@
 *  navigation related functions
 */
 
+add_filter( 'wp_nav_menu_items', 'zaobank_loginout_menu_link', 10, 2 );
+
+function zaobank_loginout_menu_link( $items, $args ) {
+	if ($args->theme_location == 'utility-nav') {
+		if (is_user_logged_in()) {
+			$items .= '<li class="right"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
+		} else {
+			$items .= '<li class="right"><a href="'. wp_login_url(get_permalink()) .'">'. __("Log In") .'</a></li>';
+		}
+	}
+	return $items;
+}
 
 class Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
 

@@ -1,6 +1,6 @@
 /*
  *
- *	Variabiles
+ *	Variables
  *
  */
 
@@ -27,6 +27,7 @@ $light-mint-reen: #ddffd9;
 $mint-green: #d3ffa6;
 $green: #009e54;
 
+$teal: rgb(4, 154, 147);
 $teal-blue: #00639a;
 
 $sky-blue: #91e9ff;
@@ -35,6 +36,7 @@ $bright-blue: #00a8de;
 
 $blue: #2b51fd;
 $purple-blue: #333391;
+$purple: rgb(54, 49, 103);
 $lavender: #a375ff;
 
 $gold: #A3824D;
@@ -49,8 +51,8 @@ $black: #000000;
 $grey-light: #C3C3C3;
 $grey-medium: #262626;
 
-$teal: rgb(81,184,218);
-$purplel: rgb(54, 49, 103);
+
+
 
 
 // Define measurements
@@ -158,14 +160,14 @@ $themes: (
 			// body & core styles
 				backgroundColor: $white,
 				textColor: $dark,
-				linkColor: $teal-blue,
-				linkHoverColor: $dark,
+				linkColor: $teal,
+				linkHoverColor: $purple,
 				subtleBackgroundColor: $light,
 
 			// primary button
-				primaryButtonBGColor: $yellow,
-				primaryButtonTextColor: $black,
-				primaryButtonBGHoverColor: $red-dark,
+				primaryButtonBGColor: $teal,
+				primaryButtonTextColor: $white,
+				primaryButtonBGHoverColor: $purple-pink,
 				primaryButtonTextHoverColor: $white,
 				primaryButtonBorder: 2px solid transparent,
 				primaryButtonHoverBorder: 2px solid $grey-light,
@@ -193,10 +195,10 @@ $themes: (
 				mainNavItemBGHoverColor: rgba( $dark, 0.9 ),
 
 			// utility navigation
-				utilityNavBGColor: $dark,
+				utilityNavBGColor: $light,
 				utilityNavBGHoverColor: $black,
-				utilityNavLinkColor: $white,
-				utilityNavLinkHoverColor: $yellow,
+				utilityNavLinkColor: $teal-blue,
+				utilityNavLinkHoverColor: $dark,
 
 			// box shadow options
 				subtleShadow: $subtle_shadow_light,
@@ -214,21 +216,21 @@ $themes: (
 			// footer
 				footerBGColor: $light,
 				footerTextColor: $dark,
-				footerLinkColor: $red,
+				footerLinkColor: $teal-blue,
 				footerLinkHoverColor: $dark,
 		),
 		dark: (
 			// body & core styles
 				backgroundColor: $dark,
 				textColor: $white,
-				linkColor: $yellow,
-				linkHoverColor: $white,
+				linkColor: $light-blue,
+				linkHoverColor: $purple-pink,
 				subtleBackgroundColor: $darker,
 
 			// primary button
-				primaryButtonBGColor: $yellow,
-				primaryButtonTextColor: $black,
-				primaryButtonBGHoverColor: $red-dark,
+				primaryButtonBGColor: $light-blue,
+				primaryButtonTextColor: $white,
+				primaryButtonBGHoverColor: $purple,
 				primaryButtonTextHoverColor: $white,
 				primaryButtonBorder: 2px solid transparent,
 				primaryButtonHoverBorder: 2px solid $grey-light,
@@ -259,7 +261,7 @@ $themes: (
 				utilityNavBGColor: $dark,
 				utilityNavBGHoverColor: $black,
 				utilityNavLinkColor: $white,
-				utilityNavLinkHoverColor: $yellow,
+				utilityNavLinkHoverColor: $light-blue,
 
 			// box shadow options
 				subtleShadow: $subtle_shadow_dark,
