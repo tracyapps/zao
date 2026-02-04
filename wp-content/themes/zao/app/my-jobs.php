@@ -123,10 +123,22 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 			</button>
 			{{/if}}
 
+			{{#if can_release}}
+			<button type="button" class="zaobank-btn zaobank-btn-warning zaobank-btn-sm zaobank-release-job" data-job-id="{{id}}">
+				<?php _e('Release', 'zaobank'); ?>
+			</button>
+			{{/if}}
+
 			{{#if can_edit}}
 			<a href="<?php echo esc_url($urls['job_form']); ?>?job_id={{id}}" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm">
 				<?php _e('Edit', 'zaobank'); ?>
 			</a>
+			{{/if}}
+
+			{{#if can_add_notes}}
+			<button type="button" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm zaobank-add-notes" data-user-id="{{notes_user_id}}">
+				<?php _e('Add Notes', 'zaobank'); ?>
+			</button>
 			{{/if}}
 
 			<a href="<?php echo esc_url($urls['jobs']); ?>?job_id={{id}}" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm">

@@ -16,6 +16,14 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 
 	<header class="zaobank-page-header">
 		<h1 class="zaobank-page-title"><?php _e('Exchange History', 'zaobank'); ?></h1>
+		<?php
+		$tabs = array(
+			array('label' => __('messages', 'zaobank'), 'url' => $urls['messages']),
+			array('label' => __('exchanges', 'zaobank'), 'url' => $urls['exchanges'], 'current' => true),
+			array('label' => __('job updates', 'zaobank'), 'url' => $urls['messages'] . '?view=updates'),
+		);
+		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
+		?>
 	</header>
 
 	<!-- Balance Summary -->

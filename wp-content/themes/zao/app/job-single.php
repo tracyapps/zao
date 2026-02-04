@@ -144,10 +144,19 @@ $current_user_id = get_current_user_id();
 		</button>
 		{{/if}}
 
+		{{#if can_release}}
+		<button type="button" class="zaobank-btn zaobank-btn-warning zaobank-btn-block zaobank-release-job" data-job-id="{{id}}">
+			<?php _e('Release This Job', 'zaobank'); ?>
+		</button>
+		{{/if}}
+
 		{{#if can_edit}}
 		<a href="<?php echo esc_url($urls['job_form']); ?>?job_id={{id}}" class="zaobank-btn zaobank-btn-secondary zaobank-btn-block">
 			<?php _e('Edit Job', 'zaobank'); ?>
 		</a>
+		<button type="button" class="zaobank-btn zaobank-btn-danger zaobank-btn-sm zaobank-delete-job" data-job-id="{{id}}">
+			<?php _e('Delete Job', 'zaobank'); ?>
+		</button>
 		{{/if}}
 
 		{{#if can_message}}
