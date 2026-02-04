@@ -1,0 +1,139 @@
+.zaobank-bottom-nav {
+	@include themify($themes) {
+		background: rgba( themed( 'subtleBackgroundColor' ), 0.15 );
+		border-top: 1px solid themed( 'subtleBackgroundColor' );
+	}
+	#footer-vector-background {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		transform: scaleY(-1);
+
+		svg {
+			height: 150%;
+		}
+
+		--gradient-1-color-1: #{$sky-blue};
+		--gradient-1-color-2: #{$purple-pink};
+		--gradient-1-color-3: #{$light-yellow};
+
+		--gradient-2-color-1: #{$white};
+		--gradient-2-color-2: #{$light-mint-reen};
+		--gradient-2-color-3: #{$white};
+		--gradient-2-color-4: #{$mint-green};
+
+		--gradient-3-color-1: #{$sky-blue};
+		--gradient-3-color-2: #{$lavender};
+		--gradient-3-color-3: #{$pink};
+		--gradient-3-color-4: #{$light-orange};
+		--gradient-3-color-5: #{$light-yellow};
+		--gradient-3-color-6: #{$white};
+
+		--vector-shadow: #{$light};
+
+
+		.theme-dark & {
+			--gradient-1-color-1: #{$teal-blue};
+			--gradient-1-color-2: #{$pink-red};
+			--gradient-1-color-3: #{$yellow-orange};
+
+			--gradient-2-color-1: #{$bright-blue};
+			--gradient-2-color-2: #{$purple-blue};
+			--gradient-2-color-3: #{$blue};
+			--gradient-2-color-4: #{$green};
+
+			--gradient-3-color-1: #{$bright-blue};
+			--gradient-3-color-2: #{$purple-blue};
+			--gradient-3-color-3: #{$hot-pink};
+			--gradient-3-color-4: #{$orange-red};
+			--gradient-3-color-5: #{$yellow};
+			--gradient-3-color-6: #{$green};
+
+			--vector-shadow: #{$darker};
+		}
+	}
+
+	.zaobank-nav-item {
+		@include themify($themes) {
+			color: themed( 'mainNavLinkColor' );
+		}
+
+		&:hover,
+		&:target,
+		&:focus {
+			@include themify($themes) {
+				color: themed( 'mainNavLinkHoverColor' );
+			}
+		}
+		svg {
+			@include themify($themes) {
+				filter: drop-shadow(1px 1px 0px rgba( themed( 'textBackgroundBlurShadow' ), 0.5)) drop-shadow(1px 1px 2px rgba(themed( 'textBackgroundBlurShadow' ), 0.95));
+			}
+
+		}
+	}
+}
+
+.zaobank-subpage-tabs {
+	display: flex;
+	border-radius: 7px 7px 0 0;
+	padding: 4px 10px 0 10px;
+	font-family: $font-header;
+	text-transform: uppercase;
+
+	@include themify($themes) {
+		background: themed( 'subtleBackgroundColor');
+		border: 1px solid rgba( themed( 'textShadowBelow' ), 0.2 );
+		border-bottom: 2px solid rgba( themed( 'linkColor'), 0.45  );
+		box-shadow: themed( 'largeShadow' );
+	}
+
+	ul,
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul {
+		display: flex;
+		align-items: baseline;
+
+
+		li {
+			text-wrap: balance;
+
+			> * {
+				padding: 1em;
+				display: block;
+				text-wrap: balance;
+				margin-left: 5px;
+				border-radius: 5px 5px 0 0;
+
+
+			}
+
+			a,
+			a:visited {
+				@include themify($themes) {
+					background: themed( 'primaryButtonBGColor' );
+					color: themed( 'primaryButtonTextColor' );
+					text-decoration: none;
+				}
+
+				&:hover,
+				&:focus,
+				&:target {
+					@include themify($themes) {
+						background: themed( 'primaryButtonBGHoverColor' );
+						color: themed( 'primaryButtonTextHoverColor' );
+
+					}
+				}
+			}
+		}
+	}
+}

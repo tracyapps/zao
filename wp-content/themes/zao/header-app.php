@@ -23,8 +23,7 @@ $unread_count = zaobank_unread_count();
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-	<meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
+
 	<?php wp_head(); ?>
 </head>
 
@@ -36,9 +35,9 @@ $unread_count = zaobank_unread_count();
 
 	<header class="zaobank-app-header">
 		<div class="zaobank-app-header-inner">
-			<!-- Logo / Back to main site -->
+			<!-- Logo / Back to dashboard -->
 			<div id="zaobank_logo_app_header">
-				<a href="<?php echo home_url(); ?>">
+				<a href="<?php echo esc_url($urls['dashboard']); ?>">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 190.58 70.54"><defs><linearGradient id="ZAOBANK-logo-linear-gradient-1" x1="166.17" y1="43.29" x2="62.56" y2="-16.53" gradientUnits="userSpaceOnUse"><stop offset=".03" stop-color="#c74597"/><stop offset=".23" stop-color="#78b9e0"/><stop offset=".47" stop-color="#1e9fb0"/><stop offset=".71" stop-color="#af45ff"/><stop offset="1" stop-color="#ffd52b"/></linearGradient><linearGradient id="ZAOBANK-logo-linear-gradient-2" x1="-4208.79" y1="206.61" x2="-4105.54" y2="266.22" gradientTransform="translate(-4080.61 293.31) rotate(-180)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#006fab"/><stop offset=".29" stop-color="#9fdf00"/><stop offset=".54" stop-color="#ffa51e"/><stop offset=".81" stop-color="#d13636"/><stop offset="1" stop-color="#5d47d6"/></linearGradient></defs>
 						<g id="zaobank-logo-shadow" opacity=".25">
 							<path d="M190.16,2.02l-71.3,1.82L59.46,1l-7.96,9.42h-8.91v5.98h3.86l-8.72,10.33,16.05-2.96-11.2,8.39v5.98h31.28v-5.98h-21.07l14.57-10.9,18.25-3.37h.79s-10.44,20.25-10.44,20.25h7.84l2.97-5.9h16.59l2.97,5.9h7.88l-10.32-19.95,9.42.16c-.63,1.72-.94,3.68-.94,5.9,0,9.23,5.23,14.29,17.42,14.29s17.42-5.11,17.42-14.29c0-1.98-.26-3.76-.77-5.35l8.23.14-1.48,25.12L190.16,2.02ZM43.82,23.2l5.74-6.8h14.06l-5.58,4.18-14.22,2.62ZM100.74,26.94h-11.28l4.48-8.91,2.37.04,4.43,8.87ZM95.11,15.7h0s0,0,0,0h0ZM140.12,24.25c0,5.66-2.89,8.32-10.29,8.32s-10.29-2.61-10.29-8.32c0-2.52.57-4.42,1.85-5.76l17.12.28c1.11,1.33,1.62,3.14,1.62,5.48ZM126.66,16.21c.95-.13,2-.2,3.17-.2,1.48,0,2.76.11,3.89.32l-7.06-.11ZM145.42,16.51c-2.46-4.22-7.49-6.48-15.6-6.48s-12.76,2.08-15.31,5.98l-11.82-.19-2.79-5.4h-9.62l-2.66,5.15-2.19-.04-13.81,2.54,2.25-1.68v-5.98h-19.27l5.91-7,58.31,2.79,65.98-1.68-28.81,32.87,1.21-20.69-11.79-.19Z" />

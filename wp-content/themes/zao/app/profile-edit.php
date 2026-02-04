@@ -27,7 +27,6 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 	<header class="zaobank-page-header">
 		<h1 class="zaobank-page-title"><?php _e('Edit Profile', 'zaobank'); ?></h1>
 	</header>
-
 	<form id="zaobank-profile-form" class="zaobank-form" data-loading="true">
 		<?php wp_nonce_field('zaobank_profile_form', 'zaobank_nonce'); ?>
 
@@ -51,10 +50,10 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 						<?php _e('About Me', 'zaobank'); ?>
 					</label>
 					<textarea id="profile-bio"
-					          name="user_bio"
-					          class="zaobank-textarea"
-					          rows="4"
-					          placeholder="<?php esc_attr_e('Tell the community a bit about yourself...', 'zaobank'); ?>"></textarea>
+							  name="user_bio"
+							  class="zaobank-textarea"
+							  rows="4"
+							  placeholder="<?php esc_attr_e('Tell the community a bit about yourself...', 'zaobank'); ?>"></textarea>
 				</div>
 
 				<!-- Skills -->
@@ -63,10 +62,10 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 						<?php _e('Skills I Can Offer', 'zaobank'); ?>
 					</label>
 					<textarea id="profile-skills"
-					          name="user_skills"
-					          class="zaobank-textarea"
-					          rows="3"
-					          placeholder="<?php esc_attr_e('What skills or services can you offer to others?', 'zaobank'); ?>"></textarea>
+							  name="user_skills"
+							  class="zaobank-textarea"
+							  rows="3"
+							  placeholder="<?php esc_attr_e('What skills or services can you offer to others?', 'zaobank'); ?>"></textarea>
 					<span class="zaobank-form-hint"><?php _e('e.g., gardening, tutoring, cooking, computer help', 'zaobank'); ?></span>
 				</div>
 
@@ -76,10 +75,10 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 						<?php _e('Availability', 'zaobank'); ?>
 					</label>
 					<input type="text"
-					       id="profile-availability"
-					       name="user_availability"
-					       class="zaobank-input"
-					       placeholder="<?php esc_attr_e('e.g., Weekday evenings, Saturday mornings', 'zaobank'); ?>">
+						   id="profile-availability"
+						   name="user_availability"
+						   class="zaobank-input"
+						   placeholder="<?php esc_attr_e('e.g., Weekday evenings, Saturday mornings', 'zaobank'); ?>">
 				</div>
 
 				<!-- Primary Region -->
@@ -97,18 +96,10 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 					<label class="zaobank-label"><?php _e('Profile Tags', 'zaobank'); ?></label>
 					<div class="zaobank-checkbox-group" data-field="user_profile_tags">
 						<?php
-						$profile_tags = array(
-							'parent' => __('Parent', 'zaobank'),
-							'senior' => __('Senior', 'zaobank'),
-							'student' => __('Student', 'zaobank'),
-							'professional' => __('Working Professional', 'zaobank'),
-							'retired' => __('Retired', 'zaobank'),
-							'caregiver' => __('Caregiver', 'zaobank'),
-							'volunteer' => __('Active Volunteer', 'zaobank'),
-							'new_to_area' => __('New to the Area', 'zaobank')
-						);
+						$tags_field = acf_get_field('field_user_profile_tags');
+						$profile_tags = $tags_field ? $tags_field['choices'] : array();
 						foreach ($profile_tags as $value => $label) :
-						?>
+							?>
 							<label class="zaobank-checkbox-label">
 								<input type="checkbox" name="user_profile_tags[]" value="<?php echo esc_attr($value); ?>">
 								<span><?php echo esc_html($label); ?></span>
@@ -122,13 +113,10 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 					<label class="zaobank-label"><?php _e('Contact Preferences', 'zaobank'); ?></label>
 					<div class="zaobank-checkbox-group" data-field="user_contact_preferences">
 						<?php
-						$contact_prefs = array(
-							'messages' => __('Messages on this site', 'zaobank'),
-							'email' => __('Email', 'zaobank'),
-							'phone' => __('Phone/Text', 'zaobank')
-						);
+						$prefs_field = acf_get_field('field_user_contact_preferences');
+						$contact_prefs = $prefs_field ? $prefs_field['choices'] : array();
 						foreach ($contact_prefs as $value => $label) :
-						?>
+							?>
 							<label class="zaobank-checkbox-label">
 								<input type="checkbox" name="user_contact_preferences[]" value="<?php echo esc_attr($value); ?>">
 								<span><?php echo esc_html($label); ?></span>
@@ -143,11 +131,24 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 						<?php _e('Phone Number', 'zaobank'); ?>
 					</label>
 					<input type="tel"
-					       id="profile-phone"
-					       name="user_phone"
-					       class="zaobank-input"
-					       placeholder="<?php esc_attr_e('Your phone number (optional)', 'zaobank'); ?>">
+						   id="profile-phone"
+						   name="user_phone"
+						   class="zaobank-input"
+						   placeholder="<?php esc_attr_e('Your phone number (optional)', 'zaobank'); ?>">
 					<span class="zaobank-form-hint"><?php _e('Only visible to members you exchange with', 'zaobank'); ?></span>
+				</div>
+
+				<!-- Discord User ID -->
+				<div class="zaobank-form-group">
+					<label for="profile-discord" class="zaobank-label">
+						<?php _e('Discord User ID', 'zaobank'); ?>
+					</label>
+					<input type="text"
+						   id="profile-discord"
+						   name="user_discord_id"
+						   class="zaobank-input"
+						   placeholder="<?php esc_attr_e('e.g., 123456789012345678', 'zaobank'); ?>">
+					<span class="zaobank-form-hint"><?php _e('Enable Developer Mode in Discord, then right-click your profile to copy your User ID', 'zaobank'); ?></span>
 				</div>
 
 			</div>

@@ -16,11 +16,6 @@
    ============================================================================= */
 
 
-
-
-
-
-
 /* Header icon links */
 .zaobank-header-icon-link {
 	position: relative;
@@ -94,19 +89,4 @@ body.zaobank-app #colophon {
    Responsive adjustments
    ============================================================================= */
 
-@media (min-width: 768px) {
-	.zaobank-app-main {
-		padding: 1.5rem 2rem;
-	}
-}
 
-/* Hide bottom nav on desktop */
-@media (min-width: 1024px) {
-	body.zaobank-app {
-		padding-bottom: 0;
-	}
-
-	.zaobank-bottom-nav {
-		display: none;
-	}
-}
