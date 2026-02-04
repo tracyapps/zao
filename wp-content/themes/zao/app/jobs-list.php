@@ -18,19 +18,14 @@ $initial_status = isset($status) ? $status : 'available';
 
 	<header class="zaobank-page-header">
 		<h1 class="zaobank-page-title"><?php _e('Jobs', 'zaobank'); ?></h1>
-		<nav class="zaobank-subpage-tabs">
-			<ul role="tablist">
-				<li role="tab" class="subpage-tab current-tab">
-					<span>all jobs</span>
-				</li>
-				<li role="tab" class="subpage-tab">
-					<a href="<?php echo esc_url($urls['my_jobs']); ?>">my jobs</a>
-				</li>
-				<li role="tab" class="subpage-tab">
-					<a href="<?php echo esc_url($urls['job_form']); ?>">post a job</a>
-				</li>
-			</ul>
-		</nav>
+		<?php
+		$tabs = array(
+			array('label' => __('all jobs', 'zaobank'), 'url' => $urls['jobs'], 'current' => true),
+			array('label' => __('my jobs', 'zaobank'), 'url' => $urls['my_jobs']),
+			array('label' => __('post a job', 'zaobank'), 'url' => $urls['job_form']),
+		);
+		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
+		?>
 	</header>
 
 	<!-- Filters -->
@@ -54,8 +49,43 @@ $initial_status = isset($status) ? $status : 'available';
 					<line x1="21" y1="21" x2="16.65" y2="16.65"/>
 				</svg>
 			</div>
+			<div class="zaobank-filter-item">
+				<button type="button" id="zaobank-filter-toggle" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm">
+					<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="4" y1="21" x2="4" y2="14"/>
+						<line x1="4" y1="10" x2="4" y2="3"/>
+						<line x1="12" y1="21" x2="12" y2="12"/>
+						<line x1="12" y1="8" x2="12" y2="3"/>
+						<line x1="20" y1="21" x2="20" y2="16"/>
+						<line x1="20" y1="12" x2="20" y2="3"/>
+						<line x1="1" y1="14" x2="7" y2="14"/>
+						<line x1="9" y1="8" x2="15" y2="8"/>
+						<line x1="17" y1="16" x2="23" y2="16"/>
+					</svg>
+					<?php _e('Job Types', 'zaobank'); ?>
+				</button>
+			</div>
 		</div>
 	</div>
+
+	<!-- Filter Panel (slide-out) -->
+	<div class="zaobank-filter-panel-overlay"></div>
+	<aside class="zaobank-filter-panel">
+		<div class="zaobank-filter-panel-header">
+			<h3><?php _e('Filter by Job Type', 'zaobank'); ?></h3>
+			<button type="button" class="zaobank-filter-panel-close zaobank-btn zaobank-btn-ghost zaobank-btn-sm" aria-label="<?php esc_attr_e('Close', 'zaobank'); ?>">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+					<line x1="18" y1="6" x2="6" y2="18"/>
+					<line x1="6" y1="6" x2="18" y2="18"/>
+				</svg>
+			</button>
+		</div>
+		<div class="zaobank-filter-panel-body">
+			<div class="zaobank-checkbox-group" id="zaobank-job-type-list">
+				<p class="zaobank-loading-placeholder"><?php _e('Loading job types...', 'zaobank'); ?></p>
+			</div>
+		</div>
+	</aside>
 
 	<!-- Jobs List -->
 	<div id="zaobank-jobs-list" class="zaobank-jobs-list" data-loading="true">
@@ -105,6 +135,14 @@ $initial_status = isset($status) ? $status : 'available';
 
 		<p class="zaobank-job-excerpt">{{excerpt}}</p>
 
+		{{#if job_types.length}}
+		<div class="zaobank-job-types">
+			{{#each job_types}}
+			<span class="zaobank-tag zaobank-tag-sm">{{this.name}}</span>
+			{{/each}}
+		</div>
+		{{/if}}
+
 		<div class="zaobank-job-meta">
 			<span class="zaobank-job-hours">
 				<svg class="zaobank-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -125,10 +163,10 @@ $initial_status = isset($status) ? $status : 'available';
 		</div>
 
 		<div class="zaobank-job-footer">
-			<div class="zaobank-job-poster">
+			<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{requester_id}}" class="zaobank-job-poster">
 				<img src="{{requester_avatar}}" alt="" class="zaobank-avatar-small">
 				<span>{{requester_name}}</span>
-			</div>
+			</a>
 			{{#if can_claim}}
 			<button type="button" class="zaobank-btn zaobank-btn-primary zaobank-btn-sm zaobank-claim-job" data-job-id="{{id}}">
 				<?php _e('Claim', 'zaobank'); ?>

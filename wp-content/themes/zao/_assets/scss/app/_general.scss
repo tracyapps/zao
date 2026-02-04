@@ -38,6 +38,16 @@ body.zaobank-app {
 	z-index: 999;
 }
 
+.zaobank-section-title {
+	font-size: var(--zaobank-font-size-lg);
+	font-weight: 600;
+	margin: 0 0 var(--zaobank-space-3);
+
+}
+h3.zaobank-section-title {
+	font-size: var(--zaobank-font-size-base);
+}
+
 
 @media (min-width: 768px) {
 	.zaobank-app-main {

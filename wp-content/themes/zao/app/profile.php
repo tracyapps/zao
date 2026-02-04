@@ -32,6 +32,15 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 
 <script type="text/template" id="zaobank-profile-template">
 <div class="zaobank-profile-header-section">
+	{{#unless is_own}}
+	<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-profile-report zaobank-flag-content" data-item-type="user" data-item-id="{{id}}">
+		<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+			<line x1="4" y1="22" x2="4" y2="15"/>
+		</svg>
+		<?php _e('Report', 'zaobank'); ?>
+	</button>
+	{{/unless}}
 	<div class="zaobank-profile-avatar-wrapper">
 		<img src="{{avatar_url}}" alt="{{name}}" class="zaobank-profile-avatar">
 	</div>
@@ -117,8 +126,8 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 </div>
 
 <!-- Action Buttons -->
+{{#if is_own}}
 <div class="zaobank-profile-actions">
-	{{#if is_own}}
 	<a href="<?php echo esc_url($urls['profile_edit']); ?>" class="zaobank-btn zaobank-btn-primary zaobank-btn-block">
 		<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
@@ -126,20 +135,17 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 		</svg>
 		<?php _e('Edit Profile', 'zaobank'); ?>
 	</a>
-	{{else}}
+</div>
+{{/if}}
+
+{{#unless is_own}}
+<div class="zaobank-profile-actions">
 	<a href="<?php echo esc_url($urls['messages']); ?>?user_id={{id}}" class="zaobank-btn zaobank-btn-primary zaobank-btn-block">
 		<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
 		</svg>
 		<?php _e('Send Message', 'zaobank'); ?>
 	</a>
-	<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-flag-content" data-item-type="user" data-item-id="{{id}}">
-		<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-			<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
-			<line x1="4" y1="22" x2="4" y2="15"/>
-		</svg>
-		<?php _e('Report User', 'zaobank'); ?>
-	</button>
-	{{/if}}
 </div>
+{{/unless}}
 </script>

@@ -16,19 +16,14 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 
 	<header class="zaobank-page-header">
 		<h1 class="zaobank-page-title"><?php _e('Jobs', 'zaobank'); ?></h1>
-		<nav class="zaobank-subpage-tabs">
-			<ul role="tablist">
-				<li role="tab" class="subpage-tab">
-					<a href="<?php echo esc_url($urls['jobs']); ?>">all jobs</a>
-				</li>
-				<li role="tab" class="subpage-tab current-tab">
-					<span>my jobs</span>
-				</li>
-				<li role="tab" class="subpage-tab">
-					<a href="<?php echo esc_url($urls['job_form']); ?>">post a job</a>
-				</li>
-			</ul>
-		</nav>
+		<?php
+		$tabs = array(
+			array('label' => __('all jobs', 'zaobank'), 'url' => $urls['jobs']),
+			array('label' => __('my jobs', 'zaobank'), 'url' => $urls['my_jobs'], 'current' => true),
+			array('label' => __('post a job', 'zaobank'), 'url' => $urls['job_form']),
+		);
+		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
+		?>
 	</header>
 
 	<!-- Tab Navigation -->

@@ -67,11 +67,19 @@ if (!$other_user) {
 </div>
 
 <script type="text/template" id="zaobank-message-template">
-<div class="zaobank-message {{#if is_own}}zaobank-message-own{{else}}zaobank-message-other{{/if}}">
+<div class="zaobank-message {{#if is_own}}zaobank-message-own{{/if}}{{#unless is_own}}zaobank-message-other{{/unless}}" data-message-id="{{id}}">
 	<div class="zaobank-message-bubble">
 		<p class="zaobank-message-text">{{message}}</p>
 		<span class="zaobank-message-time">{{time}}</span>
 	</div>
+	{{#unless is_own}}
+	<button type="button" class="zaobank-message-flag zaobank-flag-content" data-item-type="message" data-item-id="{{id}}">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+			<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+			<line x1="4" y1="22" x2="4" y2="15"/>
+		</svg>
+	</button>
+	{{/unless}}
 </div>
 </script>
 

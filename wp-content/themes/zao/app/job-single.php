@@ -104,28 +104,31 @@ $current_user_id = get_current_user_id();
 		</div>
 		{{/if}}
 
-		<div class="zaobank-job-poster-card">
-			<h2 class="zaobank-section-title"><?php _e('Posted By', 'zaobank'); ?></h2>
-			<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{requester_id}}" class="zaobank-user-card-link">
-				<img src="{{requester_avatar}}" alt="" class="zaobank-avatar">
-				<div class="zaobank-user-info">
-					<span class="zaobank-user-name">{{requester_name}}</span>
-					<span class="zaobank-user-since"><?php _e('Member since', 'zaobank'); ?> {{requester_since}}</span>
-				</div>
-			</a>
+		<div class="zaobank-flex-row job-participants">
+			<div class="zaobank-job-poster-card">
+				<h3 class="zaobank-section-title"><?php _e('Posted By', 'zaobank'); ?></h3>
+				<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{requester_id}}" class="zaobank-user-card-link">
+					<img src="{{requester_avatar}}" alt="" class="zaobank-avatar">
+					<div class="zaobank-user-info">
+						<span class="zaobank-user-name">{{requester_name}}</span>
+						<span class="zaobank-user-since"><?php _e('Member since', 'zaobank'); ?> {{requester_since}}</span>
+					</div>
+				</a>
+			</div>
+
+			{{#if provider_id}}
+			<div class="zaobank-job-provider-card">
+				<h3 class="zaobank-section-title"><?php _e('Claimed By', 'zaobank'); ?></h3>
+				<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{provider_id}}" class="zaobank-user-card-link">
+					<img src="{{provider_avatar}}" alt="" class="zaobank-avatar">
+					<div class="zaobank-user-info">
+						<span class="zaobank-user-name">{{provider_name}}</span>
+					</div>
+				</a>
+			</div>
+			{{/if}}
 		</div>
 
-		{{#if provider_id}}
-		<div class="zaobank-job-provider-card">
-			<h2 class="zaobank-section-title"><?php _e('Claimed By', 'zaobank'); ?></h2>
-			<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{provider_id}}" class="zaobank-user-card-link">
-				<img src="{{provider_avatar}}" alt="" class="zaobank-avatar">
-				<div class="zaobank-user-info">
-					<span class="zaobank-user-name">{{provider_name}}</span>
-				</div>
-			</a>
-		</div>
-		{{/if}}
 	</div>
 
 	<div class="zaobank-card-footer zaobank-job-actions">

@@ -1,0 +1,36 @@
+
+.zaobank-card {
+	.zaobank-card-body {
+
+	}
+	.zaobank-card-footer {
+		@include themify($themes) {
+			background: themed( 'subtleBackgroundColor' );
+			box-shadow: themed( 'subtleShadow' );
+			border-top: 1px solid rgba( themed( 'textColor' ), 0.3 );
+		}
+	}
+
+
+	.zaobank-user-card-link {
+		@include themify($themes) {
+			background: themed( 'subtleBackgroundColor' );
+			box-shadow: themed( 'subtleShadow' );
+			border: 1px solid rgba( themed('primaryButtonBGColor'), 0.2 );
+		}
+	}
+
+	.zaobank-flex-row {
+		display: flex;
+		justify-content: space-evenly;
+
+		&.job-participants {
+			margin-top: 1em;
+			gap: 1em;
+		}
+
+		> * {
+			flex: 1;
+		}
+	}
+}

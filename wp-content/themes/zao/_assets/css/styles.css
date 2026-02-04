@@ -1383,6 +1383,16 @@ body.zaobank-app {
   z-index: 999;
 }
 
+.zaobank-section-title {
+  font-size: var(--zaobank-font-size-lg);
+  font-weight: 600;
+  margin: 0 0 var(--zaobank-space-3);
+}
+
+h3.zaobank-section-title {
+  font-size: var(--zaobank-font-size-base);
+}
+
 @media (min-width: 768px) {
   .zaobank-app-main {
     padding: 1.5rem 2rem;
@@ -1584,6 +1594,38 @@ body.zaobank-app {
 .theme-dark .zaobank-subpage-tabs ul li a:visited:target {
   background: rgb(54, 49, 103);
   color: #ffffff;
+}
+
+.theme-light .zaobank-card .zaobank-card-footer {
+  background: #d5d0dd;
+  box-shadow: rgba(255, 255, 255, 0.91) 1px 1px 1px 0px inset, rgba(0, 0, 0, 0.25) 0px 30px 50px -20px, rgba(0, 0, 0, 0.43) 0px 10px 40px -20px;
+  border-top: 1px solid rgba(49, 46, 53, 0.3);
+}
+.theme-dark .zaobank-card .zaobank-card-footer {
+  background: #2a2630;
+  box-shadow: rgba(100, 100, 100, 0.21) -1px -1px 1px 0px inset, rgba(0, 0, 0, 0.42) 0px 30px 50px -10px, rgba(0, 0, 0, 0.63) 0px 10px 40px -20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+.theme-light .zaobank-card .zaobank-user-card-link {
+  background: #d5d0dd;
+  box-shadow: rgba(255, 255, 255, 0.91) 1px 1px 1px 0px inset, rgba(0, 0, 0, 0.25) 0px 30px 50px -20px, rgba(0, 0, 0, 0.43) 0px 10px 40px -20px;
+  border: 1px solid rgba(4, 154, 147, 0.2);
+}
+.theme-dark .zaobank-card .zaobank-user-card-link {
+  background: #2a2630;
+  box-shadow: rgba(100, 100, 100, 0.21) -1px -1px 1px 0px inset, rgba(0, 0, 0, 0.42) 0px 30px 50px -10px, rgba(0, 0, 0, 0.63) 0px 10px 40px -20px;
+  border: 1px solid rgba(36, 202, 255, 0.2);
+}
+.zaobank-card .zaobank-flex-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+.zaobank-card .zaobank-flex-row.job-participants {
+  margin-top: 1em;
+  gap: 1em;
+}
+.zaobank-card .zaobank-flex-row > * {
+  flex: 1;
 }
 
 /*
