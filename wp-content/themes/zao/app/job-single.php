@@ -14,7 +14,7 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 $current_user_id = get_current_user_id();
 ?>
 
-<div class="zaobank-container zaobank-job-single" data-component="job-single" data-job-id="<?php echo esc_attr($job_id); ?>">
+<div class="zaobank-container zaobank-job-single" data-component="job-single" data-job-id="<?php echo esc_attr($job_id); ?>" data-exchanges-url="<?php echo esc_url($urls['exchanges']); ?>" data-appreciations-url="<?php echo esc_url($urls['appreciations']); ?>">
 
 	<!-- Back Link -->
 	<a href="<?php echo esc_url($urls['jobs']); ?>" class="zaobank-back-link">
@@ -144,6 +144,15 @@ $current_user_id = get_current_user_id();
 		</button>
 		{{/if}}
 
+		{{#if show_feedback_prompt}}
+		<a href="<?php echo esc_url($urls['exchanges']); ?>?exchange_id={{exchange_id}}" class="zaobank-btn zaobank-btn-primary zaobank-btn-lg zaobank-btn-block zaobank-job-feedback">
+			<?php _e('Leave Appreciation', 'zaobank'); ?>
+		</a>
+		<a href="<?php echo esc_url($urls['appreciations']); ?>?tab=given" class="zaobank-btn zaobank-btn-outline zaobank-btn-block zaobank-job-feedback-view">
+			<?php _e('View Appreciations', 'zaobank'); ?>
+		</a>
+		{{/if}}
+
 		{{#if can_release}}
 		<button type="button" class="zaobank-btn zaobank-btn-warning zaobank-btn-block zaobank-release-job" data-job-id="{{id}}">
 			<?php _e('Release This Job', 'zaobank'); ?>
@@ -168,6 +177,7 @@ $current_user_id = get_current_user_id();
 		</a>
 		{{/if}}
 
+		{{#if can_report}}
 		<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-flag-content" data-item-type="job" data-item-id="{{id}}">
 			<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
@@ -175,6 +185,7 @@ $current_user_id = get_current_user_id();
 			</svg>
 			<?php _e('Report', 'zaobank'); ?>
 		</button>
+		{{/if}}
 	</div>
 </article>
 </script>

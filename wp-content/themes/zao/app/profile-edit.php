@@ -47,6 +47,18 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 					</button>
 				</div>
 
+				<!-- Display Name -->
+				<div class="zaobank-form-group">
+					<label for="profile-display-name" class="zaobank-label">
+						<?php _e('Display Name', 'zaobank'); ?>
+					</label>
+					<input type="text"
+						   id="profile-display-name"
+						   name="display_name"
+						   class="zaobank-input"
+						   placeholder="<?php esc_attr_e('How your name appears to others', 'zaobank'); ?>">
+				</div>
+
 				<!-- Bio -->
 				<div class="zaobank-form-group">
 					<label for="profile-bio" class="zaobank-label">

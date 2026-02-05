@@ -93,7 +93,7 @@ $unread_count = zaobank_unread_count();
 
 				<!-- User avatar / profile link -->
 				<a href="<?php echo esc_url($urls['profile']); ?>" class="zaobank-header-avatar" aria-label="<?php esc_attr_e('Your profile', 'zaobank'); ?>">
-					<?php echo get_avatar($user->ID, 32); ?>
+					<img src="<?php echo esc_url(ZAOBank_Helpers::get_user_avatar_url($user->ID, 32)); ?>" alt="" width="32" height="32">
 				</a>
 			</div>
 		</div>
