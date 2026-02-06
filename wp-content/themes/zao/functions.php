@@ -224,6 +224,7 @@ add_filter('zaobank_page_slugs', function ($slugs) {
 		'jobs'          => 'app/jobs',
 		'job_form'      => 'app/new-job',
 		'my_jobs'       => 'app/my-jobs',
+		'community'     => 'app/community',
 		'profile'       => 'app/profile',
 		'profile_edit'  => 'app/profile-edit',
 		'messages'      => 'app/messages',

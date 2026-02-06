@@ -22,8 +22,10 @@ $initial_status = isset($status) ? $status : 'available';
 		$tabs = array(
 			array('label' => __('all jobs', 'zaobank'), 'url' => $urls['jobs'], 'current' => true),
 			array('label' => __('my jobs', 'zaobank'), 'url' => $urls['my_jobs']),
-			array('label' => __('post a job', 'zaobank'), 'url' => $urls['job_form']),
 		);
+		if (ZAOBank_Security::user_has_member_access()) {
+			$tabs[] = array('label' => __('post a job', 'zaobank'), 'url' => $urls['job_form']);
+		}
 		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
 		?>
 	</header>
@@ -64,6 +66,29 @@ $initial_status = isset($status) ? $status : 'available';
 					</svg>
 					<?php _e('Job Types', 'zaobank'); ?>
 				</button>
+			</div>
+		</div>
+		<div class="zaobank-filter-row zaobank-filter-row-secondary">
+			<div class="zaobank-filter-item">
+				<span class="zaobank-filter-summary" data-role="jobs-summary"><?php _e('Showing 0-0 of 0', 'zaobank'); ?></span>
+			</div>
+			<div class="zaobank-filter-item">
+				<label class="zaobank-sr-only" for="zaobank-sort-filter"><?php _e('Sort jobs', 'zaobank'); ?></label>
+				<select id="zaobank-sort-filter" class="zaobank-select" data-filter="sort">
+					<option value="recent"><?php _e('Newest', 'zaobank'); ?></option>
+					<option value="oldest"><?php _e('Oldest', 'zaobank'); ?></option>
+					<option value="hours_desc"><?php _e('Hours (High to Low)', 'zaobank'); ?></option>
+					<option value="hours_asc"><?php _e('Hours (Low to High)', 'zaobank'); ?></option>
+					<option value="title"><?php _e('Title (A–Z)', 'zaobank'); ?></option>
+				</select>
+			</div>
+			<div class="zaobank-filter-item">
+				<label class="zaobank-sr-only" for="zaobank-per-page-filter"><?php _e('Jobs per page', 'zaobank'); ?></label>
+				<select id="zaobank-per-page-filter" class="zaobank-select" data-filter="per_page">
+					<option value="12">12</option>
+					<option value="24">24</option>
+					<option value="48">48</option>
+				</select>
 			</div>
 		</div>
 	</div>
@@ -110,7 +135,7 @@ $initial_status = isset($status) ? $status : 'available';
 		</svg>
 		<h3><?php _e('No jobs found', 'zaobank'); ?></h3>
 		<p><?php _e('Try adjusting your filters or check back later.', 'zaobank'); ?></p>
-		<?php if (is_user_logged_in()) : ?>
+		<?php if (is_user_logged_in() && ZAOBank_Security::user_has_member_access()) : ?>
 			<a href="<?php echo esc_url($urls['job_form']); ?>" class="zaobank-btn zaobank-btn-primary">
 				<?php _e('Post a Job', 'zaobank'); ?>
 			</a>
@@ -158,6 +183,15 @@ $initial_status = isset($status) ? $status : 'available';
 					<circle cx="12" cy="10" r="3"/>
 				</svg>
 				{{location}}
+			</span>
+			{{/if}}
+			{{#if virtual_ok}}
+			<span class="zaobank-job-virtual">
+				<svg class="zaobank-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+					<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+				</svg>
+				<?php _e('Virtual ok', 'zaobank'); ?>
 			</span>
 			{{/if}}
 		</div>

@@ -10,6 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 $urls = ZAOBank_Shortcodes::get_page_urls();
+$community_url = isset($urls['community']) ? $urls['community'] : (isset($urls['messages']) ? $urls['messages'] : '#');
 $current_view = isset($view) ? $view : 'messages';
 $is_updates_view = ($current_view === 'updates');
 ?>
@@ -20,8 +21,9 @@ $is_updates_view = ($current_view === 'updates');
 		<h1 class="zaobank-page-title"><?php _e('Messages', 'zaobank'); ?></h1>
 		<?php
 		$tabs = array(
-			array('label' => __('messages', 'zaobank'), 'url' => $urls['messages'], 'current' => !$is_updates_view),
+			array('label' => __('community', 'zaobank'), 'url' => $community_url),
 			array('label' => __('exchanges', 'zaobank'), 'url' => $urls['exchanges']),
+			array('label' => __('messages', 'zaobank'), 'url' => $urls['messages'], 'current' => !$is_updates_view),
 			array('label' => __('job updates', 'zaobank'), 'url' => $urls['messages'] . '?view=updates', 'current' => $is_updates_view),
 		);
 		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
