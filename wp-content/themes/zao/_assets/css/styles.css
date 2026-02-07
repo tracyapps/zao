@@ -1776,6 +1776,48 @@ button.zaobank-btn-subtle {
   gap: 1em;
 }
 
+.zaobank-conversation-item-wrapper a {
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+.theme-light .zaobank-conversation-item-wrapper a:hover, .theme-light .zaobank-conversation-item-wrapper a:focus, .theme-light .zaobank-conversation-item-wrapper a:target {
+  border-color: rgb(4, 154, 147);
+}
+.theme-dark .zaobank-conversation-item-wrapper a:hover, .theme-dark .zaobank-conversation-item-wrapper a:focus, .theme-dark .zaobank-conversation-item-wrapper a:target {
+  border-color: #24caff;
+}
+
+.theme-light .zaobank-conversation-header,
+.theme-light .zaobank-message-composer,
+.theme-light .zaobank-conversation-item {
+  background: rgba(213, 208, 221, 0.5);
+  color: #312e35;
+  border-bottom: 1px solid rgba(49, 46, 53, 0.2);
+}
+.theme-dark .zaobank-conversation-header,
+.theme-dark .zaobank-message-composer,
+.theme-dark .zaobank-conversation-item {
+  background: rgba(42, 38, 48, 0.5);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-light .zaobank-message-composer {
+  border-top: 1px solid rgba(49, 46, 53, 0.2);
+}
+.theme-dark .zaobank-message-composer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-light .zaobank-conversation-name,
+.theme-light .zaobank-conversation-user-name {
+  color: rgb(4, 154, 147);
+}
+.theme-dark .zaobank-conversation-name,
+.theme-dark .zaobank-conversation-user-name {
+  color: #24caff;
+}
+
 /*
 * header styles
 *

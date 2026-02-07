@@ -1,0 +1,36 @@
+.zaobank-conversation-item-wrapper a {
+	border-radius: 5px;
+	border: 2px solid transparent;
+
+	&:hover,
+	&:focus,
+	&:target {
+		@include themify($themes) {
+			border-color: themed('linkColor');
+		}
+	}
+
+}
+
+.zaobank-conversation-header,
+.zaobank-message-composer,
+.zaobank-conversation-item {
+	@include themify($themes) {
+		background: rgba( themed('subtleBackgroundColor'), 0.5 );
+		color: themed('textColor');
+		border-bottom: 1px solid rgba( themed('textColor'), 0.2 );
+	}
+}
+
+.zaobank-message-composer {
+	@include themify($themes) {
+		border-top: 1px solid rgba( themed('textColor'), 0.2 );
+	}
+}
+
+.zaobank-conversation-name,
+.zaobank-conversation-user-name {
+	@include themify($themes) {
+		color: themed('linkColor');
+	}
+}
