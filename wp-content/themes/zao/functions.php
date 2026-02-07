@@ -228,6 +228,7 @@ add_filter('zaobank_page_slugs', function ($slugs) {
 		'profile'       => 'app/profile',
 		'profile_edit'  => 'app/profile-edit',
 		'messages'      => 'app/messages',
+		'more'          => 'app/more',
 		'exchanges'     => 'app/exchanges',
 		'appreciations' => 'app/appreciations',
 	);

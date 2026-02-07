@@ -1,8 +1,8 @@
 <?php
 /**
- * Messages Template
+ * More Template
  *
- * Inbox/conversations list with subpage tabs.
+ * Messages, job notifications, and profile edit shortcuts.
  */
 
 if (!defined('ABSPATH')) {
@@ -12,22 +12,21 @@ if (!defined('ABSPATH')) {
 $urls = ZAOBank_Shortcodes::get_page_urls();
 $current_view = isset($view) ? $view : 'messages';
 $is_updates_view = ($current_view === 'updates');
-$page_title = $is_updates_view ? __('Job Notifications', 'zaobank') : __('Messages', 'zaobank');
 ?>
 
-<div class="zaobank-container zaobank-messages-page" data-component="messages"<?php if ($is_updates_view) echo ' data-view="updates"'; ?>>
+<div class="zaobank-container zaobank-more-page" data-component="messages"<?php if ($is_updates_view) echo ' data-view="updates"'; ?>>
 
 	<header class="zaobank-page-header">
-		<h1 class="zaobank-page-title"><?php echo esc_html($page_title); ?></h1>
+		<h1 class="zaobank-page-title"><?php _e('More', 'zaobank'); ?></h1>
+		<?php
+		$tabs = array(
+			array('label' => __('messages', 'zaobank'), 'url' => $urls['more'], 'current' => !$is_updates_view),
+			array('label' => __('job notifications', 'zaobank'), 'url' => $urls['more'] . '?view=updates', 'current' => $is_updates_view),
+			array('label' => __('update profile', 'zaobank'), 'url' => $urls['profile_edit']),
+		);
+		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
+		?>
 	</header>
-
-	<?php if (!$is_updates_view && !empty($urls['more'])) : ?>
-		<p class="zaobank-form-hint">
-			<a href="<?php echo esc_url($urls['more'] . '?view=updates'); ?>">
-				<?php _e('View job notifications', 'zaobank'); ?>
-			</a>
-		</p>
-	<?php endif; ?>
 
 	<?php if (!$is_updates_view) : ?>
 	<div class="zaobank-message-search" data-component="message-search">
@@ -41,11 +40,11 @@ $page_title = $is_updates_view ? __('Job Notifications', 'zaobank') : __('Messag
 	</div>
 	<?php endif; ?>
 
-	<!-- Conversations List -->
+	<!-- Conversations / Updates List -->
 	<div class="zaobank-conversations-list" data-loading="true">
 		<div class="zaobank-loading-state">
 			<div class="zaobank-spinner"></div>
-			<p><?php _e('Loading conversations...', 'zaobank'); ?></p>
+			<p><?php echo $is_updates_view ? esc_html__('Loading job notifications...', 'zaobank') : esc_html__('Loading conversations...', 'zaobank'); ?></p>
 		</div>
 	</div>
 
@@ -69,11 +68,12 @@ $page_title = $is_updates_view ? __('Job Notifications', 'zaobank') : __('Messag
 </div>
 
 <?php include ZAOBANK_PLUGIN_DIR . 'public/templates/components/bottom-nav.php'; ?>
+
 <script type="text/template" id="zaobank-conversation-item-template">
-	<div class="zaobank-conversation-item-wrapper">
-		<a href="<?php echo esc_url($urls['messages']); ?>?user_id={{other_user_id}}" class="zaobank-conversation-item {{#if has_unread}}unread{{/if}}">
-			<img src="{{other_user_avatar}}" alt="" class="zaobank-avatar">
-			<div class="zaobank-conversation-content">
+<div class="zaobank-conversation-item-wrapper">
+	<a href="<?php echo esc_url($urls['messages']); ?>?user_id={{other_user_id}}" class="zaobank-conversation-item {{#if has_unread}}unread{{/if}}">
+		<img src="{{other_user_avatar}}" alt="" class="zaobank-avatar">
+		<div class="zaobank-conversation-content">
 			<div class="zaobank-conversation-header">
 				<span class="zaobank-conversation-name">{{other_user_name}}</span>
 				{{#if other_user_pronouns}}
@@ -81,23 +81,23 @@ $page_title = $is_updates_view ? __('Job Notifications', 'zaobank') : __('Messag
 				{{/if}}
 				<span class="zaobank-conversation-time">{{last_message_time}}</span>
 			</div>
-				<p class="zaobank-conversation-preview">{{last_message_preview}}</p>
-			</div>
-			{{#if unread_count}}
-			<span class="zaobank-conversation-badge" data-unread-count="{{unread_count}}">{{unread_count}}</span>
-			{{/if}}
-		</a>
-		<div class="zaobank-conversation-actions">
-			{{#if has_unread}}
-			<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-mark-read" data-user-id="{{other_user_id}}">
-				<?php _e('Mark Read', 'zaobank'); ?>
-			</button>
-			{{/if}}
-			<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-archive-conversation" data-user-id="{{other_user_id}}">
-				<?php _e('Archive', 'zaobank'); ?>
-			</button>
+			<p class="zaobank-conversation-preview">{{last_message_preview}}</p>
 		</div>
+		{{#if unread_count}}
+		<span class="zaobank-conversation-badge" data-unread-count="{{unread_count}}">{{unread_count}}</span>
+		{{/if}}
+	</a>
+	<div class="zaobank-conversation-actions">
+		{{#if has_unread}}
+		<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-mark-read" data-user-id="{{other_user_id}}">
+			<?php _e('Mark Read', 'zaobank'); ?>
+		</button>
+		{{/if}}
+		<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-archive-conversation" data-user-id="{{other_user_id}}">
+			<?php _e('Archive', 'zaobank'); ?>
+		</button>
 	</div>
+</div>
 </script>
 
 <script type="text/template" id="zaobank-job-update-template">
@@ -122,12 +122,13 @@ $page_title = $is_updates_view ? __('Job Notifications', 'zaobank') : __('Messag
 	</div>
 </div>
 </script>
+
 <script type="text/template" id="zaobank-message-search-item-template">
-	<a href="<?php echo esc_url($urls['messages']); ?>?user_id={{id}}" class="zaobank-message-search-item">
-		<img src="{{avatar_url}}" alt="" class="zaobank-avatar-small">
-		<span class="zaobank-message-search-name">{{name}}</span>
-		{{#if pronouns}}
-		<span class="zaobank-name-pronouns">({{pronouns}})</span>
-		{{/if}}
-	</a>
+<a href="<?php echo esc_url($urls['messages']); ?>?user_id={{id}}" class="zaobank-message-search-item">
+	<img src="{{avatar_url}}" alt="" class="zaobank-avatar-small">
+	<span class="zaobank-message-search-name">{{name}}</span>
+	{{#if pronouns}}
+	<span class="zaobank-name-pronouns">({{pronouns}})</span>
+	{{/if}}
+</a>
 </script>

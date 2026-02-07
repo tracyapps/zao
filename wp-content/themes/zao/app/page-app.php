@@ -39,6 +39,7 @@ while (have_posts()) :
 			'profile'       => 'timebank-profile',
 			'profile_edit'  => 'timebank-profile-edit',
 			'messages'      => 'timebank-messages',
+			'more'          => 'timebank-more',
 			'exchanges'     => 'timebank-exchanges',
 			'appreciations' => 'timebank-appreciations',
 		));
@@ -52,6 +53,7 @@ while (have_posts()) :
 			'profile'       => 'profile',
 			'profile_edit'  => 'profile-edit',
 			'messages'      => 'messages',
+			'more'          => 'more',
 			'exchanges'     => 'exchanges',
 			'appreciations' => 'appreciations',
 		);

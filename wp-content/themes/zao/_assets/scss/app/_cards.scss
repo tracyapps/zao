@@ -1,5 +1,11 @@
 
 .zaobank-card {
+
+	@include themify($themes) {
+		border: 1px solid rgba( themed('textColor'), 0.13 );
+		box-shadow: themed('normalShadow');
+	}
+
 	.zaobank-card-body {
 
 	}
@@ -33,4 +39,63 @@
 			flex: 1;
 		}
 	}
+
+	.zaobank-community-header {
+		text-align: center;
+		padding: 1em;
+		position: relative;
+
+		img {
+			width: 40%;
+			aspect-ratio: 1/1;
+			height: auto;
+			margin: -70px auto 11px auto;
+
+			@include themify($themes) {
+				border: 3px solid themed('backgroundColor');
+				box-shadow: themed( 'subtleShadow');
+			}
+		}
+
+		button.zaobank-save-profile {
+			position: absolute;
+			left: 2px;
+			top: 2px;
+		}
+	}
+
+	.zaobank-community-name {
+		display: block;
+		font-family: $font-header;
+	}
+
+	button.zaobank-request-skill {
+		width: 97%;
+		text-align: center;
+
+	}
 }
+
+.zaobank-profile-region {
+	@include themify($themes) {
+		background: themed( 'loctionPillBG' );
+		color: themed( 'locationPillText' );
+	}
+}
+.zaobank-community-card {
+	margin-top: 50px;
+
+}
+.zaobank-jobs-list,
+.zaobank-community-list{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1em;
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+

@@ -200,12 +200,16 @@ $themes: (
 				utilityNavLinkColor: $teal-blue,
 				utilityNavLinkHoverColor: $dark,
 
+			// pills, etc
+				loctionPillBG: $lavender,
+				locationPillText: $white,
+
 			// box shadow options
 				subtleShadow: $subtle_shadow_light,
 				normalShadow: 1px 1px 4px rgba(0, 0, 0, 0.15),
 				largeShadow: $heavy_shadow,
 				activeShadow: $active_shadow_light,
-				insetShadow: $subtle_inset_light,
+				insetShadow: $subtle_inset_dark,
 
 			// text shadow options
 				textShadow: $text_shadow_light,
@@ -262,6 +266,10 @@ $themes: (
 				utilityNavBGHoverColor: $black,
 				utilityNavLinkColor: $white,
 				utilityNavLinkHoverColor: $light-blue,
+
+			// pills, etc
+				loctionPillBG: $gold,
+				locationPillText: $white,
 
 			// box shadow options
 				subtleShadow: $subtle_shadow_dark,

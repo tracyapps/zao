@@ -11,7 +11,9 @@ if (!defined('ABSPATH')) {
 
 $urls = ZAOBank_Shortcodes::get_page_urls();
 $community_url = isset($urls['community']) ? $urls['community'] : (isset($urls['messages']) ? $urls['messages'] : '#');
-$current_view = isset($view) ? $view : 'community';
+$current_view = isset($view)
+	? $view
+	: (isset($_GET['view']) ? sanitize_key($_GET['view']) : 'community');
 if ($current_view === 'worked-with') {
 	$current_view = 'address-book';
 }
@@ -24,46 +26,42 @@ $is_address_book = ($current_view === 'address-book');
 		<h1 class="zaobank-page-title"><?php _e('Community', 'zaobank'); ?></h1>
 		<?php
 		$tabs = array(
-			array('label' => __('community', 'zaobank'), 'url' => $community_url, 'current' => true),
-			array('label' => __('exchanges', 'zaobank'), 'url' => $urls['exchanges']),
-			array('label' => __('messages', 'zaobank'), 'url' => $urls['messages']),
+			array('label' => __('community', 'zaobank'), 'url' => $community_url, 'current' => !$is_address_book),
+			array('label' => __('address book', 'zaobank'), 'url' => $community_url . '?view=address-book', 'current' => $is_address_book),
 		);
 		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
 		?>
 	</header>
 
-	<div class="zaobank-tabs">
-		<button type="button" class="zaobank-tab <?php echo $is_address_book ? '' : 'active'; ?>" data-tab="community">
-			<?php _e('Community', 'zaobank'); ?>
-		</button>
-		<button type="button" class="zaobank-tab <?php echo $is_address_book ? 'active' : ''; ?>" data-tab="address-book">
-			<?php _e('Address Book', 'zaobank'); ?>
-		</button>
-	</div>
-
 	<div class="zaobank-tab-panel <?php echo $is_address_book ? '' : 'active'; ?>" data-panel="community">
 		<div class="zaobank-filter-bar">
-			<input type="search"
-			       class="zaobank-input"
-			       data-community-filter="search"
-			       placeholder="<?php esc_attr_e('Search people or skills...', 'zaobank'); ?>">
-			<input type="text"
-			       class="zaobank-input"
-			       data-community-filter="skill"
-			       placeholder="<?php esc_attr_e('Filter by skill', 'zaobank'); ?>">
-			<select class="zaobank-select" data-community-filter="region">
-				<option value=""><?php _e('All regions', 'zaobank'); ?></option>
-			</select>
-			<select class="zaobank-select" data-community-filter="sort">
-				<option value="recent"><?php _e('Newest', 'zaobank'); ?></option>
-				<option value="name"><?php _e('Name (A–Z)', 'zaobank'); ?></option>
-			</select>
-			<select class="zaobank-select" data-community-filter="per_page">
-				<option value="12">12</option>
-				<option value="24">24</option>
-				<option value="48">48</option>
-			</select>
-			<button type="button" id="zaobank-community-filter-toggle" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm">
+			<div class="filter-row">
+				<label class="community-search">Search
+				<input type="search"
+					   class="zaobank-input"
+					   data-community-filter="search"
+					   placeholder="<?php esc_attr_e('Search people or skills...', 'zaobank'); ?>"></label>
+
+				<label class="community-region-filter">Filter
+				<select class="zaobank-select" data-community-filter="region">
+					<option value=""><?php _e('All regions', 'zaobank'); ?></option>
+				</select></label>
+			</div>
+			<div class="sort-row">
+				<label class="community-sort">Sort by
+				<select class="zaobank-select" data-community-filter="sort">
+					<option value="recent"><?php _e('Newest', 'zaobank'); ?></option>
+					<option value="name"><?php _e('Name (A–Z)', 'zaobank'); ?></option>
+				</select></label>
+				<label class="community-show-per-page">Show
+				<select class="zaobank-select" data-community-filter="per_page">
+					<option value="12">12</option>
+					<option value="24">24</option>
+					<option value="48">48</option>
+				</select></label>
+			</div>
+
+			<button type="button" id="zaobank-community-filter-toggle" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm zaobank-filter-sticky">
 				<?php _e('Filters', 'zaobank'); ?>
 			</button>
 		</div>
@@ -71,6 +69,14 @@ $is_address_book = ($current_view === 'address-book');
 		<div class="zaobank-filter-row zaobank-filter-row-secondary">
 			<div class="zaobank-filter-item">
 				<span class="zaobank-filter-summary" data-role="community-summary"><?php _e('Showing 0-0 of 0', 'zaobank'); ?></span>
+			</div>
+			<div class="zaobank-filter-item">
+				<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-community-reset" data-action="community-reset" style="display: none;">
+					<svg class="zaobank-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<polyline points="15 18 9 12 15 6"/>
+					</svg>
+					<span data-role="community-reset-label"><?php _e('Clear tag filter', 'zaobank'); ?></span>
+				</button>
 			</div>
 		</div>
 
@@ -131,11 +137,11 @@ $is_address_book = ($current_view === 'address-book');
 	</div>
 
 	<div class="zaobank-tab-panel <?php echo $is_address_book ? 'active' : ''; ?>" data-panel="address-book">
-		<div class="zaobank-address-tabs">
-			<button type="button" class="zaobank-address-tab active" data-address-tab="worked-with">
+		<div class="zaobank-tabs">
+			<button type="button" class="zaobank-tab zaobank-address-tab active" data-address-tab="worked-with">
 				<?php _e('People I\'ve Worked With', 'zaobank'); ?>
 			</button>
-			<button type="button" class="zaobank-address-tab" data-address-tab="saved">
+			<button type="button" class="zaobank-tab zaobank-address-tab" data-address-tab="saved">
 				<?php _e('Saved Profiles', 'zaobank'); ?>
 			</button>
 		</div>
@@ -199,18 +205,26 @@ $is_address_book = ($current_view === 'address-book');
 				<img src="{{avatar_url}}" alt="" class="zaobank-avatar">
 				<div>
 					<span class="zaobank-community-name">{{name}}</span>
+					{{#if pronouns}}
+					<span class="zaobank-name-pronouns">({{pronouns}})</span>
+					{{/if}}
 					{{#if region}}
-					<span class="zaobank-community-region">{{region}}</span>
+					<div class="zaobank-profile-region">
+						<svg class="zaobank-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+							<circle cx="12" cy="10" r="3"/>
+						</svg>
+						{{region}}
+					</div>
 					{{/if}}
 				</div>
 			</div>
 			{{#if can_save}}
-			<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm zaobank-save-profile" data-saved="{{is_saved}}">
-				{{#if is_saved}}
-				<?php _e('Saved', 'zaobank'); ?>
-				{{else}}
-				<?php _e('Save', 'zaobank'); ?>
-				{{/if}}
+			<button type="button" class="zaobank-btn zaobank-btn-subtle zaobank-btn-sm zaobank-save-profile {{#if is_saved}}is-saved{{/if}}" data-saved="{{is_saved}}">
+				<svg class="zaobank-icon-star" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M12 2.5l2.9 5.88 6.5.95-4.7 4.58 1.11 6.47L12 17.77l-5.81 3.61 1.11-6.47-4.7-4.58 6.5-.95L12 2.5z"/>
+				</svg>
+				<span class="zaobank-save-label">{{save_label}}</span>
 			</button>
 			{{/if}}
 		</div>
@@ -222,7 +236,7 @@ $is_address_book = ($current_view === 'address-book');
 		{{#if skill_tags}}
 		<div class="zaobank-tags">
 			{{#each skill_tags}}
-			<span class="zaobank-tag">{{this.label}}</span>
+			<a href="<?php echo esc_url($community_url); ?>?skill_tag={{this.slug}}" class="zaobank-tag zaobank-tag-link">{{this.label}}</a>
 			{{/each}}
 		</div>
 		{{/if}}
@@ -277,6 +291,9 @@ $is_address_book = ($current_view === 'address-book');
 				<img src="{{avatar_url}}" alt="" class="zaobank-avatar">
 				<div>
 					<span class="zaobank-community-name">{{name}}</span>
+					{{#if pronouns}}
+					<span class="zaobank-name-pronouns">({{pronouns}})</span>
+					{{/if}}
 					{{#if region}}
 					<span class="zaobank-community-region">{{region}}</span>
 					{{/if}}
@@ -294,7 +311,7 @@ $is_address_book = ($current_view === 'address-book');
 		{{#if skill_tags}}
 		<div class="zaobank-tags">
 			{{#each skill_tags}}
-			<span class="zaobank-tag">{{this.label}}</span>
+			<a href="<?php echo esc_url($community_url); ?>?skill_tag={{this.slug}}" class="zaobank-tag zaobank-tag-link">{{this.label}}</a>
 			{{/each}}
 		</div>
 		{{/if}}
@@ -349,6 +366,9 @@ $is_address_book = ($current_view === 'address-book');
 				<img src="{{other_user_avatar}}" alt="" class="zaobank-avatar">
 				<div>
 					<span class="zaobank-worked-with-name">{{other_user_name}}</span>
+					{{#if other_user_pronouns}}
+					<span class="zaobank-name-pronouns">({{other_user_pronouns}})</span>
+					{{/if}}
 					<span class="zaobank-worked-with-meta">
 						<?php _e('You completed', 'zaobank'); ?> {{jobs_provided}} <?php _e('jobs for them', 'zaobank'); ?>
 						• <?php _e('They completed', 'zaobank'); ?> {{jobs_received}} <?php _e('jobs for you', 'zaobank'); ?>
@@ -377,9 +397,7 @@ $is_address_book = ($current_view === 'address-book');
 			{{#if has_latest_note}}
 			<div class="zaobank-worked-with-latest" data-role="latest-note-wrapper">
 				<span class="zaobank-tag" data-role="latest-note-tag">{{latest_note_tag_label}}</span>
-				{{#if latest_note_text}}
-				<p data-role="latest-note-text">{{latest_note_text}}</p>
-				{{/if}}
+				{{latest_note_text_html}}
 			</div>
 			{{/if}}
 

@@ -20,8 +20,11 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 		$tabs = array(
 			array('label' => __('all jobs', 'zaobank'), 'url' => $urls['jobs']),
 			array('label' => __('my jobs', 'zaobank'), 'url' => $urls['my_jobs'], 'current' => true),
-			array('label' => __('post a job', 'zaobank'), 'url' => $urls['job_form']),
 		);
+		if (ZAOBank_Security::user_has_member_access()) {
+			$tabs[] = array('label' => __('new job', 'zaobank'), 'url' => $urls['job_form']);
+		}
+		$tabs[] = array('label' => __('job history', 'zaobank'), 'url' => $urls['exchanges']);
 		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
 		?>
 	</header>
@@ -113,6 +116,9 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 		<div class="zaobank-job-claimed-by">
 			<img src="{{provider_avatar}}" alt="" class="zaobank-avatar-tiny">
 			<span><?php _e('Claimed by', 'zaobank'); ?> {{provider_name}}</span>
+			{{#if provider_pronouns}}
+			<span class="zaobank-name-pronouns">({{provider_pronouns}})</span>
+			{{/if}}
 		</div>
 		{{/if}}
 

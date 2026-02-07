@@ -54,3 +54,39 @@ h3.zaobank-section-title {
 		padding: 1.5rem 2rem;
 	}
 }
+
+
+button.zaobank-btn-subtle {
+	padding: 1px 3px;
+	line-height: 1;
+	font-size: $font-size-xs;
+
+	@include themify($themes) {
+		background: themed('backgroundColor');
+		color: themed('linkColor');
+		border: 1px solid rgba( themed('linkColor'), 0.3 );
+	}
+
+	&:active,
+	&:hover,
+	&:focus {
+		@include themify($themes) {
+			border: 1px solid themed('linkColor');
+		}
+
+	}
+}
+
+.filter-row,
+.sort-row {
+	display: flex;
+	justify-content: space-between;
+
+	input[type="search"] {
+		min-width: 60%;
+	}
+
+	.community-search {
+		flex: 1;
+	}
+}

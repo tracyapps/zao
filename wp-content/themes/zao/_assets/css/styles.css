@@ -158,6 +158,8 @@ input[type=submit],
 .wp-element-button:visited,
 .wp-block-button__link,
 .wp-block-button__link:visited,
+.zaobank-btn-primary,
+a.zaobank-btn-primary,
 a.primary_button,
 a.primary_button:visited {
   white-space: normal;
@@ -177,6 +179,8 @@ a.primary_button:visited {
 .theme-light .wp-element-button:visited,
 .theme-light .wp-block-button__link,
 .theme-light .wp-block-button__link:visited,
+.theme-light .zaobank-btn-primary,
+.theme-light a.zaobank-btn-primary,
 .theme-light a.primary_button,
 .theme-light a.primary_button:visited {
   color: #ffffff !important;
@@ -191,6 +195,8 @@ a.primary_button:visited {
 .theme-dark .wp-element-button:visited,
 .theme-dark .wp-block-button__link,
 .theme-dark .wp-block-button__link:visited,
+.theme-dark .zaobank-btn-primary,
+.theme-dark a.zaobank-btn-primary,
 .theme-dark a.primary_button,
 .theme-dark a.primary_button:visited {
   color: #ffffff !important;
@@ -211,6 +217,10 @@ a.primary_button:visited {
 .theme-light .wp-block-button__link:focus,
 .theme-light .wp-block-button__link:visited:hover,
 .theme-light .wp-block-button__link:visited:focus,
+.theme-light .zaobank-btn-primary:hover,
+.theme-light .zaobank-btn-primary:focus,
+.theme-light a.zaobank-btn-primary:hover,
+.theme-light a.zaobank-btn-primary:focus,
 .theme-light a.primary_button:hover,
 .theme-light a.primary_button:focus,
 .theme-light a.primary_button:visited:hover,
@@ -233,6 +243,10 @@ a.primary_button:visited {
 .theme-dark .wp-block-button__link:focus,
 .theme-dark .wp-block-button__link:visited:hover,
 .theme-dark .wp-block-button__link:visited:focus,
+.theme-dark .zaobank-btn-primary:hover,
+.theme-dark .zaobank-btn-primary:focus,
+.theme-dark a.zaobank-btn-primary:hover,
+.theme-dark a.zaobank-btn-primary:focus,
 .theme-dark a.primary_button:hover,
 .theme-dark a.primary_button:focus,
 .theme-dark a.primary_button:visited:hover,
@@ -1294,7 +1308,7 @@ memorial wall (archive)
 }
 .theme-light .memorial_wall object.group_container img {
   border-bottom: 1px solid rgba(49, 46, 53, 0.25);
-  box-shadow: rgba(0, 0, 0, 0.29) 2px 2px 6px 0px inset, rgba(0, 0, 0, 0.94) 5px 1px 5px 10px inset, rgba(0, 0, 0, 0.5) 0 -1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.19) 2px 2px 8px 0px inset, rgba(0, 0, 0, 0.25) -1px -1px 6px 1px inset, rgba(0, 0, 0, 0.75) 0 -1px 3px;
 }
 .theme-dark .memorial_wall object.group_container img {
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
@@ -1398,6 +1412,42 @@ h3.zaobank-section-title {
     padding: 1.5rem 2rem;
   }
 }
+button.zaobank-btn-subtle {
+  padding: 1px 3px;
+  line-height: 1;
+  font-size: clamp(1.02rem, 0.07vi + 1rem, 1.13rem);
+}
+.theme-light button.zaobank-btn-subtle {
+  background: #ffffff;
+  color: rgb(4, 154, 147);
+  border: 1px solid rgba(4, 154, 147, 0.3);
+}
+.theme-dark button.zaobank-btn-subtle {
+  background: #312e35;
+  color: #24caff;
+  border: 1px solid rgba(36, 202, 255, 0.3);
+}
+.theme-light button.zaobank-btn-subtle:active, .theme-light button.zaobank-btn-subtle:hover, .theme-light button.zaobank-btn-subtle:focus {
+  border: 1px solid rgb(4, 154, 147);
+}
+.theme-dark button.zaobank-btn-subtle:active, .theme-dark button.zaobank-btn-subtle:hover, .theme-dark button.zaobank-btn-subtle:focus {
+  border: 1px solid #24caff;
+}
+
+.filter-row,
+.sort-row {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-row input[type=search],
+.sort-row input[type=search] {
+  min-width: 60%;
+}
+.filter-row .community-search,
+.sort-row .community-search {
+  flex: 1;
+}
+
 /** app header only. **/
 .zaobank-app-header {
   width: 100%;
@@ -1561,6 +1611,10 @@ h3.zaobank-section-title {
 }
 .zaobank-subpage-tabs ul li {
   text-wrap: balance;
+  padding: 0;
+}
+.zaobank-subpage-tabs ul li.subpage-tab {
+  padding: 0;
 }
 .zaobank-subpage-tabs ul li > * {
   padding: 1em;
@@ -1596,6 +1650,48 @@ h3.zaobank-section-title {
   color: #ffffff;
 }
 
+.zaobank-tabs {
+  margin-top: -1em;
+  overflow: inherit;
+  min-height: 2.9em;
+}
+.theme-light .zaobank-tabs {
+  background: rgba(4, 154, 147, 0.9);
+  border-bottom: 1px solid rgba(49, 46, 53, 0.2);
+}
+.theme-dark .zaobank-tabs {
+  background: rgba(36, 202, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.zaobank-tabs button.zaobank-tab {
+  margin: 2px;
+}
+.theme-light .zaobank-tabs button.zaobank-tab {
+  border: none;
+}
+.theme-dark .zaobank-tabs button.zaobank-tab {
+  border: none;
+}
+.zaobank-tabs button.zaobank-tab:focus, .zaobank-tabs button.zaobank-tab:hover {
+  border: none;
+}
+.theme-light .zaobank-tabs button.zaobank-tab.active {
+  background: #ffffff;
+  color: #312e35;
+}
+.theme-dark .zaobank-tabs button.zaobank-tab.active {
+  background: #312e35;
+  color: #ffffff;
+}
+
+.theme-light .zaobank-card {
+  border: 1px solid rgba(49, 46, 53, 0.13);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+.theme-dark .zaobank-card {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.55);
+}
 .theme-light .zaobank-card .zaobank-card-footer {
   background: #d5d0dd;
   box-shadow: rgba(255, 255, 255, 0.91) 1px 1px 1px 0px inset, rgba(0, 0, 0, 0.25) 0px 30px 50px -20px, rgba(0, 0, 0, 0.43) 0px 10px 40px -20px;
@@ -1626,6 +1722,58 @@ h3.zaobank-section-title {
 }
 .zaobank-card .zaobank-flex-row > * {
   flex: 1;
+}
+.zaobank-card .zaobank-community-header {
+  text-align: center;
+  padding: 1em;
+  position: relative;
+}
+.zaobank-card .zaobank-community-header img {
+  width: 40%;
+  aspect-ratio: 1/1;
+  height: auto;
+  margin: -70px auto 11px auto;
+}
+.theme-light .zaobank-card .zaobank-community-header img {
+  border: 3px solid #ffffff;
+  box-shadow: rgba(255, 255, 255, 0.91) 1px 1px 1px 0px inset, rgba(0, 0, 0, 0.25) 0px 30px 50px -20px, rgba(0, 0, 0, 0.43) 0px 10px 40px -20px;
+}
+.theme-dark .zaobank-card .zaobank-community-header img {
+  border: 3px solid #312e35;
+  box-shadow: rgba(100, 100, 100, 0.21) -1px -1px 1px 0px inset, rgba(0, 0, 0, 0.42) 0px 30px 50px -10px, rgba(0, 0, 0, 0.63) 0px 10px 40px -20px;
+}
+.zaobank-card .zaobank-community-header button.zaobank-save-profile {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+.zaobank-card .zaobank-community-name {
+  display: block;
+  font-family: "Special Gothic Expanded One", sans-serif;
+}
+.zaobank-card button.zaobank-request-skill {
+  width: 97%;
+  text-align: center;
+}
+
+.theme-light .zaobank-profile-region {
+  background: #a375ff;
+  color: #ffffff;
+}
+.theme-dark .zaobank-profile-region {
+  background: #A3824D;
+  color: #ffffff;
+}
+
+.zaobank-community-card {
+  margin-top: 50px;
+}
+
+.zaobank-jobs-list,
+.zaobank-community-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
 }
 
 /*
@@ -2903,7 +3051,7 @@ input[type=text], input[type=tel], input[type=number], input[type=password], inp
   color: #312e35;
   border: 1px solid rgba(255, 255, 255, 0.95);
   background: rgba(213, 208, 221, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.29) 2px 2px 6px 0px inset, rgba(0, 0, 0, 0.94) 5px 1px 5px 10px inset, rgba(0, 0, 0, 0.5) 0 -1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.19) 2px 2px 8px 0px inset, rgba(0, 0, 0, 0.25) -1px -1px 6px 1px inset, rgba(0, 0, 0, 0.75) 0 -1px 3px;
 }
 .theme-dark input[type=text], .theme-dark input[type=tel], .theme-dark input[type=number], .theme-dark input[type=password], .theme-dark input[type=url], .theme-dark input[type=email], .theme-dark input[type=search] {
   color: #ffffff;
@@ -2942,7 +3090,7 @@ select {
   color: #312e35;
   border: 1px solid rgba(255, 255, 255, 0.95);
   background: rgba(213, 208, 221, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.29) 2px 2px 6px 0px inset, rgba(0, 0, 0, 0.94) 5px 1px 5px 10px inset, rgba(0, 0, 0, 0.5) 0 -1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.19) 2px 2px 8px 0px inset, rgba(0, 0, 0, 0.25) -1px -1px 6px 1px inset, rgba(0, 0, 0, 0.75) 0 -1px 3px;
 }
 .theme-dark select {
   color: #ffffff;
@@ -2967,7 +3115,7 @@ textarea {
   color: #312e35;
   border: 1px solid rgba(255, 255, 255, 0.95);
   background: rgba(213, 208, 221, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.29) 2px 2px 6px 0px inset, rgba(0, 0, 0, 0.94) 5px 1px 5px 10px inset, rgba(0, 0, 0, 0.5) 0 -1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.19) 2px 2px 8px 0px inset, rgba(0, 0, 0, 0.25) -1px -1px 6px 1px inset, rgba(0, 0, 0, 0.75) 0 -1px 3px;
 }
 .theme-dark textarea {
   color: #ffffff;

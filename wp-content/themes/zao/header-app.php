@@ -11,6 +11,7 @@
 $urls = zaobank_get_urls();
 $user = wp_get_current_user();
 $unread_count = zaobank_unread_count();
+$messages_url = isset($urls['more']) ? $urls['more'] : $urls['messages'];
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -82,7 +83,7 @@ $unread_count = zaobank_unread_count();
 				</label>
 
 				<!-- Messages with badge -->
-				<a href="<?php echo esc_url($urls['messages']); ?>" class="zaobank-header-icon-link" aria-label="<?php esc_attr_e('Messages', 'zaobank'); ?>">
+				<a href="<?php echo esc_url($messages_url); ?>" class="zaobank-header-icon-link" aria-label="<?php esc_attr_e('Messages', 'zaobank'); ?>">
 					<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
 					</svg>

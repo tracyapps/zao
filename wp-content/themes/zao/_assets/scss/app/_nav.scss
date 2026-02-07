@@ -105,6 +105,11 @@
 
 		li {
 			text-wrap: balance;
+			padding: 0;
+
+			&.subpage-tab {
+				padding: 0;
+			}
 
 			> * {
 				padding: 1em;
@@ -133,6 +138,37 @@
 
 					}
 				}
+			}
+		}
+	}
+}
+
+.zaobank-tabs {
+	margin-top: -1em;
+	overflow: inherit;
+	min-height: 2.9em;
+
+
+	@include themify($themes) {
+		background: rgba( themed( 'linkColor'), 0.9 );
+		border-bottom: 1px solid rgba( themed( 'textColor' ), 0.2 );
+	}
+
+	button.zaobank-tab {
+		margin: 2px;
+		@include themify($themes) {
+			border: none;
+		}
+
+		&:focus,
+		&:hover {
+			border: none;
+		}
+
+		&.active {
+			@include themify($themes) {
+				background: themed('backgroundColor');
+				color: themed('textColor');
 			}
 		}
 	}

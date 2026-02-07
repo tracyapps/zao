@@ -23,8 +23,11 @@ $urls = ZAOBank_Shortcodes::get_page_urls();
 		$tabs = array(
 			array('label' => __('all jobs', 'zaobank'), 'url' => $urls['jobs']),
 			array('label' => __('my jobs', 'zaobank'), 'url' => $urls['my_jobs']),
-			array('label' => $is_edit ? __('Edit Job', 'zaobank') : __('post a job', 'zaobank'), 'url' => $urls['job_form'], 'current' => true),
 		);
+		if (ZAOBank_Security::user_has_member_access()) {
+			$tabs[] = array('label' => $is_edit ? __('edit job', 'zaobank') : __('new job', 'zaobank'), 'url' => $urls['job_form'], 'current' => true);
+		}
+		$tabs[] = array('label' => __('job history', 'zaobank'), 'url' => $urls['exchanges']);
 		include ZAOBANK_PLUGIN_DIR . 'public/templates/components/subpage-tabs.php';
 		?>
 	</header>
