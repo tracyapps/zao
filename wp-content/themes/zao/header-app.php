@@ -82,6 +82,21 @@ $messages_url = isset($urls['more']) ? $urls['more'] : $urls['messages'];
 					<span class="switch__sr">Dark Mode</span>
 				</label>
 
+				<?php if (function_exists('zaobank_has_mod_access') && zaobank_has_mod_access()) :
+					$mod_count = zaobank_mod_unread_count();
+					$mod_url = isset($urls['moderation']) ? $urls['moderation'] : '#';
+				?>
+				<!-- Moderation alerts (moderators only) -->
+				<a href="<?php echo esc_url($mod_url); ?>" class="zaobank-header-icon-link zaobank-mod-icon" aria-label="<?php esc_attr_e('Moderation', 'zaobank'); ?>">
+					<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+					</svg>
+					<?php if ($mod_count > 0) : ?>
+						<span class="zaobank-header-badge zaobank-mod-badge"><?php echo $mod_count > 99 ? '99+' : $mod_count; ?></span>
+					<?php endif; ?>
+				</a>
+				<?php endif; ?>
+
 				<!-- Messages with badge -->
 				<a href="<?php echo esc_url($messages_url); ?>" class="zaobank-header-icon-link" aria-label="<?php esc_attr_e('Messages', 'zaobank'); ?>">
 					<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">

@@ -231,6 +231,7 @@ add_filter('zaobank_page_slugs', function ($slugs) {
 		'more'          => 'app/more',
 		'exchanges'     => 'app/exchanges',
 		'appreciations' => 'app/appreciations',
+		'moderation'    => 'app/moderation',
 	);
 });
 

@@ -1,0 +1,176 @@
+/** Moderation Dashboard styles **/
+
+.zaobank-moderation-page {
+
+	.zaobank-moderation-users-list,
+	.zaobank-moderation-flags-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	// User card
+	.zaobank-mod-user-card {
+		.zaobank-mod-user-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.zaobank-mod-user-header {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.zaobank-mod-user-info {
+			display: flex;
+			flex-direction: column;
+			gap: 0.125rem;
+		}
+
+		.zaobank-mod-user-name {
+			font-weight: 600;
+			font-family: $font-header;
+			text-decoration: none;
+
+			@include themify($themes) {
+				color: themed('textColor');
+			}
+
+			&:hover {
+				@include themify($themes) {
+					color: themed('linkColor');
+				}
+			}
+		}
+
+		.zaobank-mod-user-email,
+		.zaobank-mod-user-date {
+			font-size: 0.8rem;
+			opacity: 0.7;
+		}
+
+		.zaobank-mod-user-actions {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.zaobank-mod-role-select {
+			max-width: 140px;
+			font-size: 0.8rem;
+		}
+	}
+
+	// Flag card
+	.zaobank-mod-flag-card {
+		.zaobank-mod-flag-header {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 0.5rem;
+			flex-wrap: wrap;
+		}
+
+		.zaobank-mod-flag-type {
+			text-transform: capitalize;
+			font-weight: 600;
+			font-size: 0.85rem;
+		}
+
+		.zaobank-mod-flag-date {
+			font-size: 0.8rem;
+			opacity: 0.6;
+		}
+
+		.zaobank-mod-flag-details {
+			p {
+				margin: 0.25rem 0;
+				font-size: 0.9rem;
+			}
+
+			a {
+				@include themify($themes) {
+					color: themed('linkColor');
+				}
+			}
+		}
+
+		.zaobank-mod-flag-preview {
+			padding: 0.5rem 0.75rem;
+			border-radius: 4px;
+			margin: 0.5rem 0;
+			font-style: italic;
+			font-size: 0.85rem;
+
+			@include themify($themes) {
+				background: rgba(themed('textColor'), 0.05);
+				border: 1px solid rgba(themed('textColor'), 0.1);
+			}
+		}
+
+		.zaobank-mod-flag-actions {
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+			margin-top: 0.75rem;
+		}
+
+		.zaobank-mod-flag-resolve-form {
+			margin-top: 0.75rem;
+			padding-top: 0.75rem;
+
+			@include themify($themes) {
+				border-top: 1px solid rgba(themed('textColor'), 0.1);
+			}
+		}
+	}
+
+	// Settings card
+	.zaobank-mod-settings-status {
+		margin-top: 0.75rem;
+		font-size: 0.85rem;
+	}
+}
+
+// Badge variants
+.zaobank-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.15rem 0.5rem;
+	border-radius: 9px;
+	font-size: 0.7rem;
+	font-weight: 600;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.zaobank-badge-warning {
+	@include themify($themes) {
+		background: rgba(themed('primaryButtonBGColor'), 0.15);
+		color: themed('primaryButtonBGColor');
+	}
+}
+
+.zaobank-badge-open {
+	background: #e74c3c;
+	color: #fff;
+}
+
+.zaobank-badge-under_review {
+	background: #f39c12;
+	color: #fff;
+}
+
+.zaobank-badge-resolved {
+	background: #27ae60;
+	color: #fff;
+}
+
+// Header mod icon
+.zaobank-mod-icon {
+	position: relative;
+}

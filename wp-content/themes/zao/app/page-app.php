@@ -56,6 +56,7 @@ while (have_posts()) :
 			'more'          => 'more',
 			'exchanges'     => 'exchanges',
 			'appreciations' => 'appreciations',
+			'moderation'    => 'moderation',
 		);
 
 		$current_path = trim(get_page_uri(get_the_ID()), '/');
