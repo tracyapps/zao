@@ -6,6 +6,25 @@
 		box-shadow: themed('normalShadow');
 	}
 
+	.zaobank-job-header {
+		position: relative;
+
+		span.zaobank-badge {
+			position: absolute;
+			top:-3px;
+			right: -3px;
+			overflow-wrap: break-word;
+			line-height: 1;
+
+		}
+
+		h3.zaobank-job-title {
+			text-transform: none;
+			padding: 0.5em 1em 0.75em 0.5em;
+		}
+
+	}
+
 	.zaobank-card-body {
 
 	}

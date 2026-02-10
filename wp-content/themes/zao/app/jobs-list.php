@@ -152,13 +152,14 @@ $initial_status = isset($status) ? $status : 'available';
 <?php endif; ?>
 
 <script type="text/template" id="zaobank-job-card-template">
-<article class="zaobank-card zaobank-job-card" data-job-id="{{id}}">
+<article class="zaobank-card zaobank-job-card job-{{status_class}}" data-job-id="{{id}}">
 	<div class="zaobank-card-body">
 		<div class="zaobank-job-header">
+			<span class="zaobank-badge zaobank-badge-{{status_class}}">{{status_label}}</span>
 			<h3 class="zaobank-job-title">
 				<a href="<?php echo esc_url($urls['jobs']); ?>?job_id={{id}}">{{title}}</a>
 			</h3>
-			<span class="zaobank-badge zaobank-badge-{{status_class}}">{{status_label}}</span>
+
 		</div>
 
 		<p class="zaobank-job-excerpt">{{excerpt}}</p>
