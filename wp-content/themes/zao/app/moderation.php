@@ -85,9 +85,12 @@ $is_admin = current_user_can('manage_options');
 			<div class="filter-row">
 				<label class="moderation-status-filter"><?php _e('Status', 'zaobank'); ?>
 				<select class="zaobank-select" data-mod-filter="flag-status">
+					<option value="all"><?php _e('All', 'zaobank'); ?></option>
 					<option value="open"><?php _e('Open', 'zaobank'); ?></option>
 					<option value="under_review"><?php _e('Under Review', 'zaobank'); ?></option>
 					<option value="resolved"><?php _e('Resolved', 'zaobank'); ?></option>
+					<option value="removed"><?php _e('Removed', 'zaobank'); ?></option>
+					<option value="restored"><?php _e('Restored', 'zaobank'); ?></option>
 				</select></label>
 
 				<label class="moderation-type-filter"><?php _e('Type', 'zaobank'); ?>
@@ -107,6 +110,7 @@ $is_admin = current_user_can('manage_options');
 				<p><?php _e('Loading flags...', 'zaobank'); ?></p>
 			</div>
 		</div>
+		<p class="zaobank-form-hint"><?php _e('All moderator actions are logged. "Delete" removes visibility from the community; "Restore" reverses an incorrect report.', 'zaobank'); ?></p>
 
 		<div class="zaobank-mod-load-more" data-target="flags" style="display: none;">
 			<button type="button" class="zaobank-btn zaobank-btn-outline zaobank-btn-block" data-action="mod-load-more-flags">
@@ -193,7 +197,7 @@ $is_admin = current_user_can('manage_options');
 
 <!-- Flag Card Template -->
 <script type="text/template" id="zaobank-mod-flag-card-template">
-<div class="zaobank-card zaobank-mod-flag-card" data-flag-id="{{id}}">
+<div class="zaobank-card zaobank-mod-flag-card" data-flag-id="{{id}}" data-item-type="{{flagged_item_type}}">
 	<div class="zaobank-card-body">
 		<div class="zaobank-mod-flag-header">
 			<span class="zaobank-badge zaobank-badge-{{status_class}}">{{status_label}}</span>
@@ -205,7 +209,7 @@ $is_admin = current_user_can('manage_options');
 			{{#if context_note}}
 			<p><strong><?php _e('Context:', 'zaobank'); ?></strong> {{context_note}}</p>
 			{{/if}}
-			<p><strong><?php _e('Reporter:', 'zaobank'); ?></strong> {{reporter_name}}</p>
+			<p><strong><?php _e('Reported by:', 'zaobank'); ?></strong> {{reporter_name}}</p>
 			{{#if flagged_user_name}}
 			<p><strong><?php _e('Flagged user:', 'zaobank'); ?></strong>
 				<a href="<?php echo esc_url($urls['profile']); ?>?user_id={{flagged_user_id}}">{{flagged_user_name}}</a>
@@ -214,30 +218,40 @@ $is_admin = current_user_can('manage_options');
 			{{#if item_preview}}
 			<div class="zaobank-mod-flag-preview">{{item_preview}}</div>
 			{{/if}}
+			{{#if resolution_note}}
+			<p class="zaobank-mod-flag-note"><strong><?php _e('Last moderation note:', 'zaobank'); ?></strong> {{resolution_note}}</p>
+			{{/if}}
 		</div>
 		<div class="zaobank-mod-flag-actions">
 			{{#if can_review}}
 			<button type="button" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm" data-action="mod-flag-review" data-flag-id="{{id}}">
-				<?php _e('Mark Under Review', 'zaobank'); ?>
+				<?php _e('Verify Report', 'zaobank'); ?>
+			</button>
+			{{/if}}
+			{{#if can_delete}}
+			<button type="button" class="zaobank-btn zaobank-btn-danger zaobank-btn-sm" data-action="mod-flag-delete" data-flag-id="{{id}}">
+				<?php _e('Delete Content', 'zaobank'); ?>
+			</button>
+			{{/if}}
+			{{#if can_restore}}
+			<button type="button" class="zaobank-btn zaobank-btn-outline zaobank-btn-sm" data-action="mod-flag-restore" data-flag-id="{{id}}">
+				<?php _e('Restore Content', 'zaobank'); ?>
 			</button>
 			{{/if}}
 			{{#if can_resolve}}
 			<button type="button" class="zaobank-btn zaobank-btn-primary zaobank-btn-sm" data-action="mod-flag-resolve" data-flag-id="{{id}}">
-				<?php _e('Resolve', 'zaobank'); ?>
-			</button>
-			<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm" data-action="mod-flag-restore" data-flag-id="{{id}}">
-				<?php _e('Restore Content', 'zaobank'); ?>
+				<?php _e('Close Without Deleting', 'zaobank'); ?>
 			</button>
 			{{/if}}
 		</div>
 		<div class="zaobank-mod-flag-resolve-form" hidden>
 			<div class="zaobank-form-group">
 				<label class="zaobank-label"><?php _e('Resolution note', 'zaobank'); ?></label>
-				<textarea class="zaobank-textarea" rows="2" placeholder="<?php esc_attr_e('Add a note about the resolution...', 'zaobank'); ?>"></textarea>
+				<textarea class="zaobank-textarea" rows="2" placeholder="<?php esc_attr_e('Add context for the moderation log (optional).', 'zaobank'); ?>"></textarea>
 			</div>
 			<div class="zaobank-form-actions">
 				<button type="button" class="zaobank-btn zaobank-btn-primary zaobank-btn-sm" data-action="mod-flag-confirm-resolve">
-					<?php _e('Confirm', 'zaobank'); ?>
+					<?php _e('Confirm Close', 'zaobank'); ?>
 				</button>
 				<button type="button" class="zaobank-btn zaobank-btn-ghost zaobank-btn-sm" data-action="mod-flag-cancel-resolve">
 					<?php _e('Cancel', 'zaobank'); ?>
