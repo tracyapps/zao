@@ -1524,6 +1524,7 @@ button.zaobank-btn-subtle {
   left: 0;
   right: 0;
   height: 100%;
+  width: 100%;
   transform: scaleY(-1);
 }
 .zaobank-bottom-nav #footer-vector-background svg {
