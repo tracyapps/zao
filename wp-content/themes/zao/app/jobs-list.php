@@ -152,7 +152,7 @@ $initial_status = isset($status) ? $status : 'available';
 <?php endif; ?>
 
 <script type="text/template" id="zaobank-job-card-template">
-<article class="zaobank-card zaobank-job-card job-{{status_class}}" data-job-id="{{id}}">
+<article class="zaobank-card zaobank-job-card job-{{status_class}} {{flagged_class}}" data-job-id="{{id}}">
 	<div class="zaobank-card-body">
 		<div class="zaobank-job-header">
 			<span class="zaobank-badge zaobank-badge-{{status_class}}">{{status_label}}</span>
